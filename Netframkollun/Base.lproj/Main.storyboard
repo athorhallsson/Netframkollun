@@ -39,6 +39,9 @@
                                                 <state key="normal" title="Send">
                                                     <color key="titleColor" red="0.91985120480000004" green="1" blue="0.93108539180000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="aUn-Wq-3Zo" kind="show" identifier="orderSegue" id="FLR-r9-nrH"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -249,92 +252,54 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="HDx-DJ-waE">
-                                        <rect key="frame" x="8" y="38" width="584" height="500"/>
+                                        <rect key="frame" x="38" y="58" width="524" height="550"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZuL-9J-DxY">
-                                                <rect key="frame" x="35" y="0.0" width="515" height="443"/>
+                                                <rect key="frame" x="4.5" y="0.0" width="515" height="493"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQs-l4-Ob2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="515" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="515" height="35"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="HOy-ey-FZl"/>
                                                             <constraint firstAttribute="width" constant="515" id="LQ2-eO-2wH"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="HOy-ey-FZl"/>
-                                                            </mask>
-                                                        </variation>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2VX-cW-KEH">
-                                                        <rect key="frame" x="0.0" y="52" width="515" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="zm4-yY-b0g"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="57" width="515" height="35.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="zm4-yY-b0g"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="delegate" destination="Cvg-0T-Qkq" id="Bzs-fo-d6B"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ssn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="swF-3i-4Ng">
-                                                        <rect key="frame" x="0.0" y="104" width="515" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="XVT-Iu-EEF"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="114.5" width="515" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="XVT-Iu-EEF"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="delegate" destination="Cvg-0T-Qkq" id="7jN-8f-1iV"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NDB-wG-ZoM">
-                                                        <rect key="frame" x="0.0" y="155" width="515" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="Ljf-AZ-52D"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="171.5" width="515" height="35.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="Ljf-AZ-52D"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="delegate" destination="Cvg-0T-Qkq" id="eaM-ZM-Ndl"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="postal code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="plN-ol-qn0">
-                                                        <rect key="frame" x="0.0" y="207" width="515" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="VIh-Ro-dIK"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="229" width="515" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="VIh-Ro-dIK"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="delegate" destination="Cvg-0T-Qkq" id="gUV-HW-84u"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kmF-ay-CmJ">
-                                                        <rect key="frame" x="0.0" y="259" width="515" height="30"/>
+                                                        <rect key="frame" x="0.0" y="286" width="515" height="35.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
                                                         <connections>
@@ -342,49 +307,25 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bAh-95-nuK">
-                                                        <rect key="frame" x="0.0" y="310" width="515" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="QxH-jY-eDr"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="343.5" width="515" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="QxH-jY-eDr"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="delegate" destination="Cvg-0T-Qkq" id="eZC-XN-n3G"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79l-9M-0lm">
-                                                        <rect key="frame" x="0.0" y="362" width="515" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="YRJ-WO-1Gh"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="400.5" width="515" height="35.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="YRJ-WO-1Gh"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="delegate" destination="Cvg-0T-Qkq" id="hlR-fu-5bf"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqc-8Q-89d">
-                                                        <rect key="frame" x="0.0" y="414" width="515" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="h6h-tV-1a0"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="458" width="515" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="h6h-tV-1a0"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="delegate" destination="Cvg-0T-Qkq" id="TYF-Y5-eZd"/>
                                                         </connections>
@@ -392,7 +333,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="PxG-z7-XHN">
-                                                <rect key="frame" x="193" y="461" width="199" height="39"/>
+                                                <rect key="frame" x="162.5" y="511" width="199" height="39"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GE8-PM-SDF">
                                                         <rect key="frame" x="0.0" y="0.0" width="74" height="39"/>
@@ -424,16 +365,16 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="500" id="g21-9S-ivp"/>
+                                            <constraint firstAttribute="height" constant="550" id="g21-9S-ivp"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="HDx-DJ-waE" secondAttribute="bottom" constant="60" id="6U5-WA-3Fh"/>
-                                    <constraint firstItem="HDx-DJ-waE" firstAttribute="top" secondItem="JLi-Y9-Z8Z" secondAttribute="topMargin" constant="30" id="W3b-2M-wSS"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="HDx-DJ-waE" secondAttribute="trailing" id="hj8-Ul-DfR"/>
+                                    <constraint firstItem="HDx-DJ-waE" firstAttribute="top" secondItem="JLi-Y9-Z8Z" secondAttribute="topMargin" constant="50" id="W3b-2M-wSS"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="HDx-DJ-waE" secondAttribute="trailing" constant="30" id="hj8-Ul-DfR"/>
                                     <constraint firstItem="HDx-DJ-waE" firstAttribute="centerX" secondItem="JLi-Y9-Z8Z" secondAttribute="centerX" id="hl4-i8-q75"/>
-                                    <constraint firstItem="HDx-DJ-waE" firstAttribute="leading" secondItem="JLi-Y9-Z8Z" secondAttribute="leadingMargin" id="ieG-2o-nVP"/>
+                                    <constraint firstItem="HDx-DJ-waE" firstAttribute="leading" secondItem="JLi-Y9-Z8Z" secondAttribute="leadingMargin" constant="30" id="ieG-2o-nVP"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -463,6 +404,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2WK-qo-guf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1228" y="1253"/>
+        </scene>
+        <!--Send View Controller-->
+        <scene sceneID="YC2-ZC-dLT">
+            <objects>
+                <viewController id="w92-eQ-yCB" customClass="SendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gPB-R2-bkU"/>
+                        <viewControllerLayoutGuide type="bottom" id="hDw-I6-CF5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JNz-Gx-qeJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please wait while your images are being sent..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPC-vu-kMO">
+                                <rect key="frame" x="68" y="152" width="465" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="moF-zE-U2c">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.074020686490000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bhp-cA-Rqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1511" y="-290"/>
         </scene>
         <!--Photo Details View Controller-->
         <scene sceneID="P3T-5s-omn">
@@ -592,6 +562,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0SR-td-jzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1322" y="444"/>
+        </scene>
+        <!--Order View Controller-->
+        <scene sceneID="F03-sK-3hq">
+            <objects>
+                <viewController id="aUn-Wq-3Zo" customClass="OrderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MWv-kO-xd7"/>
+                        <viewControllerLayoutGuide type="bottom" id="dKE-ng-PuQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eRs-rd-b35">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.074020686490000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="w92-eQ-yCB" kind="showDetail" id="pS0-AY-N2g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbK-72-ufx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="649" y="-288"/>
         </scene>
     </scenes>
     <resources>

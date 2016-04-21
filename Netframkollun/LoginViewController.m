@@ -30,6 +30,7 @@
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"loginSuccess" sender:nil];
 }
 
 - (IBAction)signupButtonPressed:(UIButton *)sender {

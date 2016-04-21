@@ -10,6 +10,9 @@
 		A510F36A1CC6C0EB002721D7 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = A510F3691CC6C0EB002721D7 /* Photo.m */; };
 		A510F36D1CC6DF90002721D7 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A510F36C1CC6DF90002721D7 /* PhotoCell.xib */; };
 		A510F3701CC6E222002721D7 /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A510F36F1CC6E222002721D7 /* PhotoCollectionViewCell.m */; };
+		A5280C591CC97561000889BC /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C581CC97561000889BC /* OrderViewController.m */; };
+		A5280C5C1CC97576000889BC /* SendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C5B1CC97576000889BC /* SendViewController.m */; };
+		A5280C5F1CC98135000889BC /* Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C5E1CC98135000889BC /* Properties.m */; };
 		A5DAE4801CC69CA10078D15E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DAE47F1CC69CA10078D15E /* main.m */; };
 		A5DAE4831CC69CA10078D15E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DAE4821CC69CA10078D15E /* AppDelegate.m */; };
 		A5DAE4861CC69CA10078D15E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DAE4851CC69CA10078D15E /* PhotoViewController.m */; };
@@ -31,6 +34,12 @@
 		A510F36C1CC6DF90002721D7 /* PhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
 		A510F36E1CC6E222002721D7 /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		A510F36F1CC6E222002721D7 /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		A5280C571CC97561000889BC /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		A5280C581CC97561000889BC /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
+		A5280C5A1CC97576000889BC /* SendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendViewController.h; sourceTree = "<group>"; };
+		A5280C5B1CC97576000889BC /* SendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendViewController.m; sourceTree = "<group>"; };
+		A5280C5D1CC98135000889BC /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
+		A5280C5E1CC98135000889BC /* Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Properties.m; sourceTree = "<group>"; };
 		A5DAE47B1CC69CA10078D15E /* Netframkollun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netframkollun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DAE47F1CC69CA10078D15E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A5DAE4811CC69CA10078D15E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,6 +92,8 @@
 			children = (
 				A510F3681CC6C0EB002721D7 /* Photo.h */,
 				A510F3691CC6C0EB002721D7 /* Photo.m */,
+				A5280C5D1CC98135000889BC /* Properties.h */,
+				A5280C5E1CC98135000889BC /* Properties.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -150,6 +161,10 @@
 				A5DD8A521CC8CF0E008C33E4 /* LoginViewController.m */,
 				A5DD8A541CC8F547008C33E4 /* RegisterViewController.h */,
 				A5DD8A551CC8F547008C33E4 /* RegisterViewController.m */,
+				A5280C571CC97561000889BC /* OrderViewController.h */,
+				A5280C581CC97561000889BC /* OrderViewController.m */,
+				A5280C5A1CC97576000889BC /* SendViewController.h */,
+				A5280C5B1CC97576000889BC /* SendViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -289,7 +304,10 @@
 				A5DAE4861CC69CA10078D15E /* PhotoViewController.m in Sources */,
 				A5F4779B1CC77B4200E859C2 /* PhotoDetailsViewController.m in Sources */,
 				A5DAE4831CC69CA10078D15E /* AppDelegate.m in Sources */,
+				A5280C591CC97561000889BC /* OrderViewController.m in Sources */,
 				A5DD8A531CC8CF0E008C33E4 /* LoginViewController.m in Sources */,
+				A5280C5F1CC98135000889BC /* Properties.m in Sources */,
+				A5280C5C1CC97576000889BC /* SendViewController.m in Sources */,
 				A510F3701CC6E222002721D7 /* PhotoCollectionViewCell.m in Sources */,
 				A5DAE4801CC69CA10078D15E /* main.m in Sources */,
 				A5DD8A561CC8F547008C33E4 /* RegisterViewController.m in Sources */,

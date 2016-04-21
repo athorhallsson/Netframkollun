@@ -7,6 +7,7 @@
 //
 
 #import "PhotoDetailsViewController.h"
+#import "Properties.h"
 
 @interface PhotoDetailsViewController ()
 
@@ -34,8 +35,8 @@
     [countPickerView setDelegate:self];
     [countPickerView setDataSource:self];
     
-    _countPickerData = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20];
-    _sizePickerData = @[@"10x15", @"13x18", @"15x20", @"18x24", @"21x30", @"30x40"];
+    _countPickerData = [Properties quantities];
+    _sizePickerData = [Properties imageSizes];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -181,7 +181,7 @@
 }
 
 - (void)errorMarkTextField:(UITextField*)TextField {
-    [TextField setBackgroundColor:[UIColor colorWithRed:0.9 green:0.7 blue:0.7 alpha:6.0]];
+    [TextField setBackgroundColor:[UIColor colorWithRed:0.95 green:0.5 blue:0.4 alpha:1.0]];
 }
 
 - (void)validMarkTextField:(UITextField*)TextField {
