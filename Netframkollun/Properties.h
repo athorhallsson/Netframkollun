@@ -12,5 +12,6 @@
 
 + (NSArray *)imageSizes;
 + (NSArray *)quantities;
++ (NSNumber*)prices:(NSMutableArray*)photos;
 
 @end

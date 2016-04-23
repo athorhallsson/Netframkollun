@@ -40,6 +40,7 @@
 		A5280C5B1CC97576000889BC /* SendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendViewController.m; sourceTree = "<group>"; };
 		A5280C5D1CC98135000889BC /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
 		A5280C5E1CC98135000889BC /* Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Properties.m; sourceTree = "<group>"; };
+		A597A8481CCB8081004310DE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A5DAE47B1CC69CA10078D15E /* Netframkollun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netframkollun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DAE47F1CC69CA10078D15E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A5DAE4811CC69CA10078D15E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,6 +74,7 @@
 		7C7A7940A212E8B0A6336095 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A597A8481CCB8081004310DE /* Security.framework */,
 				19F691300B1E77FD5DC5D17E /* Pods_Netframkollun.framework */,
 			);
 			name = Frameworks;

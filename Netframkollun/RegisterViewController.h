@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController <UITextFieldDelegate>
+@interface RegisterViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ssnTextField;
@@ -24,6 +24,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (strong, nonatomic) NSMutableData *webResponseData;
+
+@property (strong, nonatomic) NSMutableArray *locations;
+@property (strong, nonatomic) NSMutableArray *pCodes;
+
+@property (strong, nonatomic) NSString *tempLocation;
+@property (nonatomic) BOOL inLocation;
+@property (nonatomic) BOOL inPostCode;
 
 - (IBAction)registerPressed:(UIButton *)sender;
 - (IBAction)backPressed:(UIButton *)sender;

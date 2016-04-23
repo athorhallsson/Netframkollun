@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SendViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+@property (strong, nonatomic) NSMutableArray *photos;
 
 @end

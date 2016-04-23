@@ -10,6 +10,7 @@
 #import "Photo.h"
 #import "PhotoCollectionViewCell.h"
 #import "PhotoDetailsViewController.h"
+#import "OrderViewController.h"
 
 @interface PhotoViewController ()
 
@@ -99,18 +100,21 @@
     [self performSegueWithIdentifier:@"PhotoDetails" sender:[_photos objectAtIndex:[indexPath row]]];
 }
 
-// Segue
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"PhotoDetails"]) {
-        [(PhotoDetailsViewController *)[segue destinationViewController] setDetailPhoto:(Photo *)sender];
-    }
-}
-
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(30, 30, 30, 30);
 }
 
+// Segue
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"PhotoDetails"]) {
+        [(PhotoDetailsViewController *)[segue destinationViewController] setDetailPhoto:(Photo *)sender];
+    }
+    if ([segue.identifier isEqualToString:@"sendSegue"]) {
+        [(OrderViewController*)[segue destinationViewController] setPhotos:_photos];
+    }
+}
 
 @end

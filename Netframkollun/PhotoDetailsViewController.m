@@ -20,7 +20,7 @@
     
     [_imageView setImage:[_detailPhoto image]];
     [_sizeTextField setText:[_detailPhoto imageSize]];
-    [_countTextField setText:[NSString stringWithFormat:@"%lu", [_detailPhoto count]]];
+    [_countTextField setText:[NSString stringWithFormat:@"%lu", (long)[_detailPhoto count]]];
     
     UIPickerView * sizePickerView = [UIPickerView new];
     UIPickerView * countPickerView = [UIPickerView new];
