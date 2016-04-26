@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderViewController : UIViewController
+@interface OrderViewController : UIViewController <UITextFieldDelegate>
 NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonnull) NSNumber *totalPrice;
 
 - (IBAction)sendButtonPressed:(UIButton *)sender;
+- (IBAction)backButtonPressed:(UIButton *)sender;
 
 NS_ASSUME_NONNULL_END
 @end

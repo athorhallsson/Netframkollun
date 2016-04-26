@@ -20,10 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Register segmented controls changed notifications
     [_deliveryControl addTarget:self action:@selector(deliveryChanged:) forControlEvents:UIControlEventValueChanged];
     [_paymentControl addTarget:self action:@selector(paymentChanged:) forControlEvents:UIControlEventValueChanged];
-    _totalPrice = [Properties prices:_photos];
     
+    // Calculate price of the order
+    _totalPrice = [Properties prices:_photos];
     [_priceLabel setText:[NSString stringWithFormat:@"%ld kr.", (long)[_totalPrice integerValue]]];
     
 }
@@ -36,21 +38,42 @@
 - (void)deliveryChanged:(UISegmentedControl*)control {
     if ([control selectedSegmentIndex] == 0) {
         [_paymentControl setHidden:YES];
-        [_priceLabel setText:[NSString stringWithFormat:@"%ld kr.", (long)_totalPrice.integerValue]];
     }
     else {
         [_paymentControl setHidden:NO];
-        [_priceLabel setText:[NSString stringWithFormat:@"%ld kr.", (long)_totalPrice.integerValue + (long)990]];
     }
+    [self updatePrice];
 }
 
 - (void)paymentChanged:(UISegmentedControl*)control {
+    [self updatePrice];
+}
+
+- (void)updatePrice {
+    int displayPrice = (int)_totalPrice.integerValue;
+    if ([_deliveryControl selectedSegmentIndex] != 0) {
+        displayPrice += 990;
+        if ([_paymentControl selectedSegmentIndex] == 1) {
+            displayPrice += 300;
+        }
+    }
     
+    [_priceLabel setText:[NSString stringWithFormat:@"%d kr.", displayPrice]];
 }
 
 - (IBAction)sendButtonPressed:(UIButton *)sender {
     // Assemble all information about the order and pass it along
     [self performSegueWithIdentifier:@"sendSegue" sender:_photos];
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)backButtonPressed:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

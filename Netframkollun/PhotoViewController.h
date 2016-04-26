@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "Properties.h"
+#import "Photo.h"
+#import "PhotoCollectionViewCell.h"
+#import "PhotoDetailsViewController.h"
+#import "OrderViewController.h"
+#import "PaymentParser.h"
+#import "DeliveryParser.h"
+#import "ImageTypeParser.h"
 
 @interface PhotoViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -16,6 +25,11 @@
 
 @property (strong, nonatomic) NSMutableArray *photos;
 
+@property (strong, nonatomic) User *currUser;
+
+@property (strong, nonatomic) NSArray *payments;
+@property (strong, nonatomic) NSArray *deliveries;
+@property (strong, nonatomic) NSArray *imageTypes;
 
 - (IBAction)addButtonPressed:(id)sender;
     

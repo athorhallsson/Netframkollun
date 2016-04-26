@@ -11,7 +11,7 @@
 
 @interface Photo : NSObject
 
-@property (nonatomic, retain) UIImage *image;
+@property (nonatomic, strong) UIImage *image;
 
 @property (copy) NSString *imageSize;
 

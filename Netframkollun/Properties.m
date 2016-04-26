@@ -11,6 +11,33 @@
 
 @implementation Properties
 
++ (NSString*)host {
+    return @"http://netframkollun.pedromyndir.is";
+   // return @"http://dev.digit.is";
+}
+
++ (NSString*)site {
+    return @"netframkollun.pedromyndir.is";
+  //  return @"dev.digit.is";
+    
+}
+
+
++ (NSString*)restService {
+    return [[self host] stringByAppendingString:@"/digit.imageuploader.webservice/orderservicejs.svc"];
+}
+
++ (NSString*)webService {
+    return [[self host] stringByAppendingString:@"/digit.imageuploader.webservice/OrderService.asmx"];
+}
+
++ (NSString*)storeId {
+    // Pedro
+    return @"ad28e5a9-2244-40af-8c3c-05da9eb13efe";
+    // Digit dev
+    //return @"00000000-0000-0000-0000-000000000000";
+}
+
 + (NSArray *)imageSizes {
     static NSArray *_sizes;
     static dispatch_once_t onceToken;

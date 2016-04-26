@@ -4,5 +4,4 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'Netframkollun' do
-	pod 'Alamofire', '~> 3.1.2'
 end

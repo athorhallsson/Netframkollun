@@ -18,10 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Init Fields
     [_imageView setImage:[_detailPhoto image]];
     [_sizeTextField setText:[_detailPhoto imageSize]];
     [_countTextField setText:[NSString stringWithFormat:@"%lu", (long)[_detailPhoto count]]];
     
+    
+    // Init PickerViews
     UIPickerView * sizePickerView = [UIPickerView new];
     UIPickerView * countPickerView = [UIPickerView new];
     
@@ -36,12 +39,14 @@
     [countPickerView setDataSource:self];
     
     _countPickerData = [Properties quantities];
-    _sizePickerData = [Properties imageSizes];
+ //   _sizePickerData = [Properties imageSizes];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+// Picker View
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
@@ -58,7 +63,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if ([pickerView tag] == 1) {
-        return [_sizePickerData objectAtIndex:row];
+        return [(ImageType *)[_sizePickerData objectAtIndex:row] imageTypeDescription];
     }
     else {
         return [NSString stringWithFormat:@"%ld", (long)[(NSNumber *)[_countPickerData objectAtIndex:row] integerValue]];
@@ -67,13 +72,15 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if ([pickerView tag] == 1) {
-        [_sizeTextField setText:[_sizePickerData objectAtIndex:row]];
+        [_sizeTextField setText:[[_sizePickerData objectAtIndex:row] imageTypeDescription]];
     }
     else {
         [_countTextField setText:[NSString stringWithFormat:@"%ld", (long)[(NSNumber *)[_countPickerData objectAtIndex:row] integerValue]]];
     }
     [[self view] endEditing:YES];
 }
+
+// Buttons
 
 - (IBAction)saveButtonPressed:(UIButton *)sender {
     [_detailPhoto setImageSize:[_sizeTextField text]];

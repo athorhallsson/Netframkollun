@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Properties.h"
 
-@interface RegisterViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate>
+@interface RegisterViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ssnTextField;
@@ -25,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (strong, nonatomic) NSMutableData *webResponseData;
+@property (strong, nonatomic) NSData *webResponseData;
 
 @property (strong, nonatomic) NSMutableArray *locations;
 @property (strong, nonatomic) NSMutableArray *pCodes;

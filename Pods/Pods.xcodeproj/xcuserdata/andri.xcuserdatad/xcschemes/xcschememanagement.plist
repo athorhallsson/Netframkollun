@@ -4,25 +4,95 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ISO8601DateFormatterValueTransformer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Pods-Netframkollun.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
+		</dict>
+		<key>RKValueTransformers.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>RestKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>SOCKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>TransitionKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3430D4E26D99745D429DAC28BA717F7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>353D1A7AA4A7EF27312BA989C5A9CBEA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>4AF5269FB5B40D5D6038384CF9A73859</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>50AA5739307E002DFE8DC76483F0B9A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8462A8181F47055FC81FEEBDF2298D71</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8DA2FC23EE86C372E8BB7F26010768CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CC8C218FCACB3956CAE3C6DE83C8679B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E682C3CBB971795ACB2F5AE8CFCCBB59</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EBB70B39B24BFA8A41C2439A78FAC47B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

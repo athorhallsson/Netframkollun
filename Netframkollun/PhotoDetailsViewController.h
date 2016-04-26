@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Photo.h"
+#import "ImageType.h"
 
 @interface PhotoDetailsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 

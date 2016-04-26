@@ -7,10 +7,7 @@
 //
 
 #import "PhotoViewController.h"
-#import "Photo.h"
-#import "PhotoCollectionViewCell.h"
-#import "PhotoDetailsViewController.h"
-#import "OrderViewController.h"
+
 
 @interface PhotoViewController ()
 
@@ -25,29 +22,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
+    // Fetch image types
+    [self getImageTypes];
+    [self getPayments];
+    [self getDeliveries];
+
     // Init datasource
     _photos = [[NSMutableArray alloc] init];
     
-    // Init collectionView
+    // Init flowlayout
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(175, 175)];
     [flowLayout setMinimumLineSpacing:10];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     
+    // Init collectionView
     [self.collectionView setCollectionViewLayout:flowLayout];
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
-        
-    [self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCollectionCell"];
     
+    // Init collectionViewCell
+    [self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCollectionCell"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
 }
 
 // Buttons
@@ -105,14 +105,108 @@
     return UIEdgeInsetsMake(30, 30, 30, 30);
 }
 
+// Networking
+
+- (void)getImageTypes {
+    NSString *host = [Properties restService];
+    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getImageTypes</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">http://netframkollun.pedromyndir.is/digit.imageuploader.webservice/OrderServiceJS.svc</a:To></s:Header><s:Body><getImageTypes xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getImageTypes></s:Body></s:Envelope>", _currUser.userId];
+    
+    NSURL *sRequestURL = [NSURL URLWithString:host];
+    NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+    NSString *sMessageLength = [NSString stringWithFormat:@"%d", (int)[soapBody length]];
+    
+    [myRequest addValue: @"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [myRequest addValue: [Properties site] forHTTPHeaderField:@"Host"];
+    [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
+    [myRequest setHTTPMethod:@"POST"];
+    [myRequest setHTTPBody: [soapBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response: %@", newStr);
+                                      ImageTypeParser *itp = [[ImageTypeParser alloc] initWithXMLData:data];
+                                      _imageTypes = [itp imageTypes];
+                                      if (error) {
+                                          NSLog(@"%@", error);
+                                      }
+                                  }];
+    [task resume];
+
+}
+
+- (void)getDeliveries {
+    NSString *host = [Properties restService];
+    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getDeliveries</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">http://netframkollun.pedromyndir.is/digit.imageuploader.webservice/OrderServiceJS.svc</a:To></s:Header><s:Body><getDeliveries xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getDeliveries></s:Body></s:Envelope>", _currUser.userId];
+    
+    NSURL *sRequestURL = [NSURL URLWithString:host];
+    NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+    NSString *length = [NSString stringWithFormat:@"%d", (int)[soapBody length]];
+    
+    [myRequest addValue: @"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [myRequest addValue: [Properties site] forHTTPHeaderField:@"Host"];
+    [myRequest addValue: length forHTTPHeaderField:@"Content-Length"];
+    [myRequest setHTTPMethod:@"POST"];
+    [myRequest setHTTPBody: [soapBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response: %@", newStr);
+                                      DeliveryParser *pd = [[DeliveryParser alloc] initWithXMLData:data];
+                                      _deliveries = pd.deliveries;
+                                      if (error) {
+                                          NSLog(@"%@", error);
+                                      }
+                                  }];
+    [task resume];
+    
+}
+
+- (void)getPayments {
+    NSString *host = [Properties restService];
+    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getPayments</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">http://netframkollun.pedromyndir.is/digit.imageuploader.webservice/OrderServiceJS.svc</a:To></s:Header><s:Body><getPayments xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getPayments></s:Body></s:Envelope>", _currUser.userId];
+    
+    NSURL *sRequestURL = [NSURL URLWithString:host];
+    NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+    NSString *length = [NSString stringWithFormat:@"%d", (int)[soapBody length]];
+    
+    [myRequest addValue: @"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [myRequest addValue: [Properties site] forHTTPHeaderField:@"Host"];
+    [myRequest addValue: length forHTTPHeaderField:@"Content-Length"];
+    [myRequest setHTTPMethod:@"POST"];
+    [myRequest setHTTPBody: [soapBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response: %@", newStr);
+                                      PaymentParser *pp = [[PaymentParser alloc] initWithXMLData:data];
+                                      _payments = pp.payments;
+                                      if (error) {
+                                          NSLog(@"%@", error);
+                                      }
+                                  }];
+    [task resume];
+    
+}
+
+
 // Segue
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"PhotoDetails"]) {
         [(PhotoDetailsViewController *)[segue destinationViewController] setDetailPhoto:(Photo *)sender];
+        [(PhotoDetailsViewController *)[segue destinationViewController] setSizePickerData:self.imageTypes];
     }
-    if ([segue.identifier isEqualToString:@"sendSegue"]) {
+    if ([segue.identifier isEqualToString:@"OrderSegue"]) {
         [(OrderViewController*)[segue destinationViewController] setPhotos:_photos];
     }
 }

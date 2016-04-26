@@ -17,10 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Init variables for parser
     _locations = [[NSMutableArray alloc] init];
     _pCodes = [[NSMutableArray alloc] init];
      _tempLocation = @"";
     
+    // Register notifications
     [_ssnTextField addTarget:self
                   action:@selector(ssnTextFieldDidChange:)
         forControlEvents:UIControlEventEditingChanged];
@@ -39,20 +41,23 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    
+    // Get postal codes
     [self getPostalCodes];
+    
+    UIPickerView * postalPickerView = [UIPickerView new];
+    _postalTextField.inputView = postalPickerView;
+    postalPickerView.delegate = self;
+    postalPickerView.dataSource = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+// Buttons
+
 - (IBAction)registerPressed:(UIButton *)sender {
-    NSLog(@"%@", _locations);
-    NSLog(@"%@", _pCodes);
-    
-    
     if ([self validateInput]) {
         [self performSegueWithIdentifier:@"registerSuccess" sender:nil];
     }
@@ -62,37 +67,41 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)ssnTextFieldDidChange:(UITextField *)TextField {
-    if ([[TextField text] isEqualToString:@""] || [[TextField text] length] == 10) {
-        [TextField resignFirstResponder];
+// Textfields
+
+- (void)ssnTextFieldDidChange:(UITextField *)textField {
+    if ([[textField text] isEqualToString:@""] || [[textField text] length] == 10) {
+        [textField resignFirstResponder];
     }
 }
 
-- (void)postalTextFieldDidChange:(UITextField *)TextField {
-    if ([[TextField text] isEqualToString:@""] || [[TextField text] length] == 3) {
-        [TextField resignFirstResponder];
+- (void)postalTextFieldDidChange:(UITextField *)textField {
+    if ([[textField text] isEqualToString:@""] || [[textField text] length] == 3) {
+        [textField resignFirstResponder];
     }
 }
 
-- (void)phoneTextFieldDidChange:(UITextField *)TextField {
-    if ([[TextField text] isEqualToString:@""] || [[TextField text] length] == 7) {
-        [TextField resignFirstResponder];
+- (void)phoneTextFieldDidChange:(UITextField *)textField {
+    if ([[textField text] isEqualToString:@""] || [[textField text] length] == 7) {
+        [textField resignFirstResponder];
     }
 }
 
-- (void)TextFieldDidBeginEditing:(UITextField *)TextField {
-    _activeField = TextField;
+- (void)TextFieldDidBeginEditing:(UITextField *)textField {
+    _activeField = textField;
 }
 
-- (void)TextFieldDidEndEditing:(UITextField *)TextField {
-    [TextField resignFirstResponder];
+- (void)TextFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
     _activeField = nil;
 }
 
-- (BOOL)TextFieldShouldReturn:(UITextField *)TextField {
-    [TextField resignFirstResponder];
+- (BOOL)TextFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
     return YES;
 }
+
+// Keyboard
 
 - (void)keyboardWasShown:(NSNotification*)aNotification {
     NSDictionary* info = [aNotification userInfo];
@@ -115,6 +124,8 @@
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
 }
+
+// Input validation
 
 - (BOOL)validateInput {
     int errors = 0;
@@ -201,61 +212,42 @@
 
 // Get Postal Codes
 
-- (NSArray*)getPostalCodes {
-    NSString *host = @"http://netframkollun.pedromyndir.is/digit.imageuploader.webservice/orderservice.asmx";
-    NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><getPostalCodes xmlns=\"http://imageuploader.digit.is\" /></soap:Body></soap:Envelope>";
-    
+- (void)getPostalCodes {
+    NSString *soapBody = @"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><getPostalCodes xmlns=\"http://imageuploader.digit.is\" /></soap:Body></soap:Envelope>";
+    NSString *host = [Properties webService];
     NSURL *sRequestURL = [NSURL URLWithString:host];
     NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
-    NSString *sMessageLength = [NSString stringWithFormat:@"%d", (int)[sSOAPMessage length]];
+    NSString *sMessageLength = [NSString stringWithFormat:@"%d", (int)[soapBody length]];
     
     [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [myRequest addValue: @"http://imageuploader.digit.is/getPostalCodes" forHTTPHeaderField:@"SOAPAction"];
     [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
     [myRequest setHTTPMethod:@"POST"];
-    [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    [myRequest setHTTPBody: [soapBody dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
-    
-    if (theConnection) {
-        _webResponseData = [NSMutableData data];
-        NSLog(@"Problem");
-    }
-    else {
-        NSLog(@"Some error occurred in Connection");
-    }
-    return nil;
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      _webResponseData = data;
+                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response: %@", newStr);
+                                      NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:_webResponseData];
+                                      xmlParser.delegate = self;
+                                      [xmlParser parse];
+                                      if (error) {
+                                          NSLog(@"%@", error);
+                                      }
+                                  }];
+    [task resume];
 }
 
-
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    [self.webResponseData  setLength:0];
-}
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.webResponseData  appendData:data];
-}
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Some error in your Connection. Please try again.");
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Received Bytes from server: %d", (int)[self.webResponseData length]);
-    //NSString *myXMLResponse = [[NSString alloc] initWithBytes: [self.webResponseData bytes] length:[self.webResponseData length] encoding:NSUTF8StringEncoding];
-    //NSLog(@"%@",myXMLResponse);
-    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:_webResponseData];
-    // Don't forget to set the delegate!
-    xmlParser.delegate = self;
-    // Run the parser
-    [xmlParser parse];
-}
+// XML parser
 
 -(void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:
-(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    NSLog(@"%@", elementName);
+(NSString *)qName attributes:(NSDictionary *)attributeDict {
+    // NSLog(@"%@", elementName);
     if ([elementName isEqualToString:@"Pcode"]) {
         _inPostCode = YES;
     }
@@ -263,9 +255,8 @@
          _inLocation = YES;
     }
 }
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    NSLog(@"%@", string);
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    // NSLog(@"%@", string);
     if (_inPostCode) {
         [_pCodes addObject:string];
     }
@@ -275,9 +266,8 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    NSLog(@"%@", elementName);
+  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+    // NSLog(@"%@", elementName);
     if ([elementName isEqualToString:@"Pcode"]) {
         _inPostCode = NO;
     }
@@ -286,6 +276,24 @@
         _tempLocation = @"";
         _inLocation = NO;
     }
+}
+
+// PickerView
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [NSString stringWithFormat:@"%@ - %@", [_pCodes objectAtIndex:row], [_locations objectAtIndex:row]];
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [_locations count];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    [_postalTextField setText:[NSString stringWithFormat:@"%@ - %@", [_pCodes objectAtIndex:row], [_locations objectAtIndex:row]]];
 }
 
 
