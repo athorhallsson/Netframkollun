@@ -11,6 +11,7 @@
 
 @interface PhotoViewController ()
 @property (strong, nonatomic) ImageType *defaultImageType;
+@property (nonatomic) NSInteger imageCounter;
 @end
 
 @implementation PhotoViewController
@@ -22,6 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (!_imageCounter) {
+        _imageCounter = 0;
+    }
     
     // Fetch image types
     [self getImageTypes];
@@ -67,7 +72,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     
-    Photo *newPhoto = [[Photo alloc] initWithImage:chosenImage andWithImageType:_defaultImageType];
+    _imageCounter++;
+    Photo *newPhoto = [[Photo alloc] initWithImage:chosenImage
+                                  andWithImageType:_defaultImageType
+                                andWithImageItemId:[NSNumber numberWithInteger:_imageCounter]];
     [_photos addObject:newPhoto];
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -242,6 +250,7 @@
         [(OrderViewController*)[segue destinationViewController] setDeliveries:_deliveries];
         [(OrderViewController*)[segue destinationViewController] setImageTypes:_imageTypes];
         [(OrderViewController*)[segue destinationViewController] setPayments:_payments];
+        [(OrderViewController*)[segue destinationViewController] setCurrUser:_currUser];
     }
 }
 

@@ -15,5 +15,4 @@
 
 - (id)initWithXMLData:(NSData*)data;
 
-
 @end

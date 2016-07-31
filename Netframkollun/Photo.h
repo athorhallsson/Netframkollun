@@ -12,10 +12,15 @@
 
 @interface Photo : NSObject
 
+@property (nonatomic, strong) NSNumber* imageItemId;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) ImageType *imageType;
 @property (nonatomic, strong) NSNumber* count;
+@property (nonatomic, strong) NSString* imageId;
+@property (nonatomic, strong) NSString* imageName;
 
-- (id)initWithImage:(UIImage *)myImage andWithImageType:(ImageType *)type;
+- (id)initWithImage:(UIImage *)myImage andWithImageType:(ImageType *)type andWithImageItemId:(NSNumber *)itemId;
+
+- (NSString *)getUUID;
 
 @end

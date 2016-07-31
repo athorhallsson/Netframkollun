@@ -107,7 +107,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"sendSegue"]) {
-         [(SendViewController*)[segue destinationViewController] setPhotos:_photos];
+        [(SendViewController*)[segue destinationViewController] setPhotos:_photos];
+        [(SendViewController*)[segue destinationViewController] setCurrUser:_currUser];
     }
 }
 

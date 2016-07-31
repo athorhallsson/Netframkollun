@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface OrderViewController : UIViewController <UITextFieldDelegate>
 NS_ASSUME_NONNULL_BEGIN
@@ -22,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSDictionary *imageTypes;
 @property (strong, nonatomic) NSDictionary *payments;
 @property (strong, nonnull) NSNumber *totalPrice;
+
+@property (strong, nonatomic) User *currUser;
 
 - (IBAction)sendButtonPressed:(UIButton *)sender;
 - (IBAction)backButtonPressed:(UIButton *)sender;
