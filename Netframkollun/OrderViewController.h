@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray *photos;
 @property (strong, nonatomic) NSDictionary *deliveries;
 @property (strong, nonatomic) NSDictionary *imageTypes;
+@property (strong, nonatomic) NSDictionary *payments;
 @property (strong, nonnull) NSNumber *totalPrice;
 
 - (IBAction)sendButtonPressed:(UIButton *)sender;

@@ -28,7 +28,7 @@
 
 @property (strong, nonatomic) User *currUser;
 
-@property (strong, nonatomic) NSArray *payments;
+@property (strong, nonatomic) NSDictionary *payments;
 @property (strong, nonatomic) NSDictionary *deliveries;
 @property (strong, nonatomic) NSDictionary *imageTypes;
 @property (strong, nonatomic) NSNumber *minCost;

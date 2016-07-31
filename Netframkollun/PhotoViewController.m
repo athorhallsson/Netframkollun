@@ -241,6 +241,7 @@
         [(OrderViewController*)[segue destinationViewController] setPhotos:_photos];
         [(OrderViewController*)[segue destinationViewController] setDeliveries:_deliveries];
         [(OrderViewController*)[segue destinationViewController] setImageTypes:_imageTypes];
+        [(OrderViewController*)[segue destinationViewController] setPayments:_payments];
     }
 }
 

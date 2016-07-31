@@ -11,7 +11,7 @@
 
 @interface PaymentParser : NSObject <NSXMLParserDelegate>
 
-@property (strong, nonatomic) NSMutableArray *payments;
+@property (strong, nonatomic) NSMutableDictionary *payments;
 
 - (id)initWithXMLData:(NSData*)data;
 

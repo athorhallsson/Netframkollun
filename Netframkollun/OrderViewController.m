@@ -12,10 +12,12 @@
 #import "Photo.h"
 #import "ImageType.h"
 #import "Delivery.h"
+#import "Payment.h"
 
 
 @interface OrderViewController ()
-
+@property (strong, nonatomic) Payment *selectedPayment;
+@property (strong, nonatomic) Delivery *selectedDelivery;
 @end
 
 @implementation OrderViewController
@@ -27,9 +29,15 @@
     [_deliveryControl addTarget:self action:@selector(deliveryChanged:) forControlEvents:UIControlEventValueChanged];
     [_paymentControl addTarget:self action:@selector(paymentChanged:) forControlEvents:UIControlEventValueChanged];
     
+    // Set defaults
+    // Stadgreitt
+    _selectedPayment = [_payments objectForKey:@"5"];
+    // Pickup
+    _selectedDelivery = [_deliveries objectForKey:@"4"];
+    
     // Calculate price of the order
     _totalPrice = [NSNumber numberWithInteger:[self calculatePrice]];
-    [_priceLabel setText:[NSString stringWithFormat:@"%ld kr.", (long)[_totalPrice integerValue]]];
+    [self updatePrice];
     
 }
 
@@ -40,28 +48,33 @@
 
 - (void)deliveryChanged:(UISegmentedControl*)control {
     if ([control selectedSegmentIndex] == 0) {
+        // Sott
         [_paymentControl setHidden:YES];
+        _selectedDelivery = [_deliveries objectForKey:@"4"];
+        _selectedPayment = [_payments objectForKey:@"5"];
     }
     else {
+        // Sent
+        _selectedDelivery = [_deliveries objectForKey:@"2"];
         [_paymentControl setHidden:NO];
     }
     [self updatePrice];
 }
 
 - (void)paymentChanged:(UISegmentedControl*)control {
+    if ([control selectedSegmentIndex] == 0) {
+        // Kreditkort
+        _selectedPayment = [_payments objectForKey:@"3"];
+    }
+    else {
+        // Postkrafa
+        _selectedPayment = [_payments objectForKey:@"4"];
+    }
     [self updatePrice];
 }
 
 - (void)updatePrice {
-    int displayPrice = (int)_totalPrice.integerValue;
-    if ([_deliveryControl selectedSegmentIndex] != 0) {
-        displayPrice += 990;
-        if ([_paymentControl selectedSegmentIndex] == 1) {
-            displayPrice += 300;
-        }
-    }
-    
-    [_priceLabel setText:[NSString stringWithFormat:@"%d kr.", displayPrice]];
+    [_priceLabel setText:[NSString stringWithFormat:@"%d kr.", _totalPrice.intValue + _selectedDelivery.price.intValue + _selectedPayment.price.intValue]];
 }
 
 - (IBAction)sendButtonPressed:(UIButton *)sender {

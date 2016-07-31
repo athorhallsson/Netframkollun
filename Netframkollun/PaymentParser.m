@@ -21,7 +21,7 @@
 - (id)initWithXMLData:(NSData*)data {
     self = [super init];
     
-    _payments = [[NSMutableArray alloc] init];
+    _payments = [[NSMutableDictionary alloc] init];
     
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];
     xmlParser.delegate = self;
@@ -58,7 +58,7 @@
     else if ([elementName isEqualToString:@"b:Price"]) {
         [_currPayment setPrice:_parseString];
         // Last element, add to array
-        [_payments addObject:_currPayment];
+        [_payments setValue:_currPayment forKey:_currPayment.paymentId];
     }
 }
 
