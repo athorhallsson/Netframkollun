@@ -10,11 +10,12 @@
 
 @implementation Photo
 
-- (id)initWithImage:(UIImage *)myImage {
+- (id)initWithImage:(UIImage *)myImage
+   andWithImageType:(ImageType *)type {
     self = [super init];
     _image = myImage;
-    _imageSize = @"10x15";
-    _count = 1;
+    _imageType = type;
+    _count = @1;
     return self;
 }
 

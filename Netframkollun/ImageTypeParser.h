@@ -11,7 +11,7 @@
 
 @interface ImageTypeParser : NSObject <NSXMLParserDelegate>
 
-@property (strong, nonatomic) NSMutableArray *imageTypes;
+@property (strong, nonatomic) NSMutableDictionary *imageTypes;
 
 - (id)initWithXMLData:(NSData*)data;
 

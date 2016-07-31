@@ -10,7 +10,7 @@
 
 
 @interface PhotoViewController ()
-
+@property (strong, nonatomic) ImageType *defaultImageType;
 @end
 
 @implementation PhotoViewController
@@ -27,6 +27,7 @@
     [self getImageTypes];
     [self getPayments];
     [self getDeliveries];
+    [self getPriceList];
 
     // Init datasource
     _photos = [[NSMutableArray alloc] init];
@@ -66,7 +67,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     
-    Photo *newPhoto = [[Photo alloc] initWithImage:chosenImage];
+    Photo *newPhoto = [[Photo alloc] initWithImage:chosenImage andWithImageType:_defaultImageType];
     [_photos addObject:newPhoto];
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -109,7 +110,7 @@
 
 - (void)getImageTypes {
     NSString *host = [Properties restService];
-    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getImageTypes</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">http://netframkollun.pedromyndir.is/digit.imageuploader.webservice/OrderServiceJS.svc</a:To></s:Header><s:Body><getImageTypes xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getImageTypes></s:Body></s:Envelope>", _currUser.userId];
+    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getImageTypes</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">%@</a:To></s:Header><s:Body><getImageTypes xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getImageTypes></s:Body></s:Envelope>", [Properties restService], _currUser.userId];
     
     NSURL *sRequestURL = [NSURL URLWithString:host];
     NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
@@ -125,10 +126,11 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                      NSLog(@"Response: %@", newStr);
+                                      //NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      //NSLog(@"Response: %@", newStr);
                                       ImageTypeParser *itp = [[ImageTypeParser alloc] initWithXMLData:data];
                                       _imageTypes = [itp imageTypes];
+                                      _defaultImageType = [[itp imageTypes] objectForKey:@"2"];
                                       if (error) {
                                           NSLog(@"%@", error);
                                       }
@@ -139,7 +141,7 @@
 
 - (void)getDeliveries {
     NSString *host = [Properties restService];
-    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getDeliveries</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">http://netframkollun.pedromyndir.is/digit.imageuploader.webservice/OrderServiceJS.svc</a:To></s:Header><s:Body><getDeliveries xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getDeliveries></s:Body></s:Envelope>", _currUser.userId];
+    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getDeliveries</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">%@</a:To></s:Header><s:Body><getDeliveries xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getDeliveries></s:Body></s:Envelope>", [Properties restService], _currUser.userId];
     
     NSURL *sRequestURL = [NSURL URLWithString:host];
     NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
@@ -169,7 +171,7 @@
 
 - (void)getPayments {
     NSString *host = [Properties restService];
-    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getPayments</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">http://netframkollun.pedromyndir.is/digit.imageuploader.webservice/OrderServiceJS.svc</a:To></s:Header><s:Body><getPayments xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getPayments></s:Body></s:Envelope>", _currUser.userId];
+    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getPayments</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">%@</a:To></s:Header><s:Body><getPayments xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getPayments></s:Body></s:Envelope>", [Properties restService], _currUser.userId];
     
     NSURL *sRequestURL = [NSURL URLWithString:host];
     NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
@@ -197,6 +199,35 @@
     
 }
 
+- (void)getPriceList {
+    NSString *host = [Properties restService];
+    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/getPricelist</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">%@</a:To></s:Header><s:Body><getPricelist xmlns=\"http://imageuploader.digit.is\"><userid>%@</userid></getPricelist></s:Body></s:Envelope>", [Properties restService], _currUser.userId];
+    
+    NSURL *sRequestURL = [NSURL URLWithString:host];
+    NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+    NSString *length = [NSString stringWithFormat:@"%d", (int)[soapBody length]];
+    
+    [myRequest addValue: @"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [myRequest addValue: [Properties site] forHTTPHeaderField:@"Host"];
+    [myRequest addValue: length forHTTPHeaderField:@"Content-Length"];
+    [myRequest setHTTPMethod:@"POST"];
+    [myRequest setHTTPBody: [soapBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response: %@", newStr);
+                                      PriceList *pl = [[PriceList alloc] initWithXMLData:data];
+                                      _minCost = [NSNumber numberWithInteger:[pl.minCost integerValue]];
+                                      if (error) {
+                                          NSLog(@"%@", error);
+                                      }
+                                  }];
+    [task resume];
+    
+}
 
 // Segue
 #pragma mark - Navigation
@@ -208,6 +239,8 @@
     }
     if ([segue.identifier isEqualToString:@"OrderSegue"]) {
         [(OrderViewController*)[segue destinationViewController] setPhotos:_photos];
+        [(OrderViewController*)[segue destinationViewController] setDeliveries:_deliveries];
+        [(OrderViewController*)[segue destinationViewController] setImageTypes:_imageTypes];
     }
 }
 

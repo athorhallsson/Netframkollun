@@ -11,8 +11,8 @@
 @implementation PhotoCollectionViewCell
 
 -(void) configureWithPhoto:(Photo *)myPhoto {
-    [_sizeLabel setText:myPhoto.imageSize];
-    [_countLabel setText:[NSString stringWithFormat:@"%ld", (long)myPhoto.count]];
+    [_sizeLabel setText:myPhoto.imageType.imageTypeDescription];
+    [_countLabel setText:[NSString stringWithFormat:@"%@", myPhoto.count]];
     [_imageView setImage:myPhoto.image];
 }
 

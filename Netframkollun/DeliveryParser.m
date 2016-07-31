@@ -20,7 +20,7 @@
 - (id)initWithXMLData:(NSData*)data {
     self = [super init];
     
-    _deliveries = [[NSMutableArray alloc] init];
+    _deliveries = [[NSMutableDictionary alloc] init];
     
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];
     xmlParser.delegate = self;
@@ -57,7 +57,7 @@
     else if ([elementName isEqualToString:@"b:Price"]) {
         [_currDelivery setPrice:_parseString];
         // Last element, add to array
-        [_deliveries addObject:_currDelivery];
+        [_deliveries setValue:_currDelivery forKey:_currDelivery.deliveryId];
     }
 }
 

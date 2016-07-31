@@ -19,8 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
-@property (strong, nonatomic) NSArray *sizePickerData;
-@property (strong, nonatomic) NSArray *countPickerData;
+@property (strong, nonatomic) NSDictionary *sizePickerData;
+@property (strong, nonatomic) NSArray *sizePickerArray;
+@property (strong, nonatomic) NSMutableArray *countPickerData;
 
 - (IBAction)saveButtonPressed:(UIButton *)sender;
 - (IBAction)cancelButtonPressed:(UIButton *)sender;

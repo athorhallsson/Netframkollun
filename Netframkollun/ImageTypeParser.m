@@ -20,7 +20,7 @@
 - (id)initWithXMLData:(NSData*)data {
     self = [super init];
     
-    _imageTypes = [[NSMutableArray alloc] init];
+    _imageTypes = [[NSMutableDictionary alloc] init];
     
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];
     xmlParser.delegate = self;
@@ -54,13 +54,16 @@
     else if ([elementName isEqualToString:@"b:Height"]) {
         [_currImageType setHeight:_parseString];
     }
+    else if ([elementName isEqualToString:@"b:ID"]) {
+        [_currImageType setImageTypeId:_parseString];
+    }
     else if ([elementName isEqualToString:@"b:Price"]) {
         [_currImageType setPrice:_parseString];
     }
     else if ([elementName isEqualToString:@"b:Width"]) {
         [_currImageType setWidth:_parseString];
         // Last element, add to array
-        [_imageTypes addObject:_currImageType];
+        [_imageTypes setValue:_currImageType forKey:_currImageType.imageTypeId];
     }
 }
 

@@ -15,8 +15,5 @@
 + (NSString*)restService;
 + (NSString*)webService;
 + (NSString*)storeId;
-+ (NSArray *)imageSizes;
-+ (NSArray *)quantities;
-+ (NSNumber*)prices:(NSMutableArray*)photos;
 
 @end

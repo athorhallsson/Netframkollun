@@ -16,6 +16,7 @@
 #import "PaymentParser.h"
 #import "DeliveryParser.h"
 #import "ImageTypeParser.h"
+#import "PriceList.h"
 
 @interface PhotoViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -28,8 +29,9 @@
 @property (strong, nonatomic) User *currUser;
 
 @property (strong, nonatomic) NSArray *payments;
-@property (strong, nonatomic) NSArray *deliveries;
-@property (strong, nonatomic) NSArray *imageTypes;
+@property (strong, nonatomic) NSDictionary *deliveries;
+@property (strong, nonatomic) NSDictionary *imageTypes;
+@property (strong, nonatomic) NSNumber *minCost;
 
 - (IBAction)addButtonPressed:(id)sender;
     

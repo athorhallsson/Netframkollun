@@ -9,6 +9,9 @@
 #import "OrderViewController.h"
 #import "SendViewController.h"
 #import "Properties.h"
+#import "Photo.h"
+#import "ImageType.h"
+#import "Delivery.h"
 
 
 @interface OrderViewController ()
@@ -25,7 +28,7 @@
     [_paymentControl addTarget:self action:@selector(paymentChanged:) forControlEvents:UIControlEventValueChanged];
     
     // Calculate price of the order
-    _totalPrice = [Properties prices:_photos];
+    _totalPrice = [NSNumber numberWithInteger:[self calculatePrice]];
     [_priceLabel setText:[NSString stringWithFormat:@"%ld kr.", (long)[_totalPrice integerValue]]];
     
 }
@@ -74,6 +77,16 @@
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSInteger)calculatePrice {
+    int totalPrice = 0;
+    for (Photo *photo in _photos) {
+        int currPrice = [[[_imageTypes valueForKey:photo.imageType.imageTypeId] price] intValue];
+        currPrice = currPrice * [photo.count intValue];
+        totalPrice = totalPrice + currPrice;
+    }
+    return totalPrice;
 }
 
 

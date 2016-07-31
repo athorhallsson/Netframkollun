@@ -11,7 +11,7 @@
 
 @interface DeliveryParser : NSObject <NSXMLParserDelegate>
 
-@property (strong, nonatomic) NSMutableArray *deliveries;
+@property (strong, nonatomic) NSMutableDictionary *deliveries;
 
 - (id)initWithXMLData:(NSData*)data;
 
