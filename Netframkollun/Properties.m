@@ -30,6 +30,10 @@
     return [[self host] stringByAppendingString:@"/digit.imageuploader.webservice/OrderService.asmx"];
 }
 
++ (NSString*)uploadService {
+    return [[self host] stringByAppendingString:@"/digit.imageuploader.webservice/UploadFile.asmx"];
+}
+
 + (NSString*)storeId {
     // Pedro
     return @"ad28e5a9-2244-40af-8c3c-05da9eb13efe";

@@ -99,6 +99,9 @@
         currPrice = currPrice * [photo.count intValue];
         totalPrice = totalPrice + currPrice;
     }
+    if (totalPrice < [_minCost integerValue]) {
+        return [_minCost integerValue];
+    }
     return totalPrice;
 }
 
@@ -109,6 +112,9 @@
     if ([segue.identifier isEqualToString:@"sendSegue"]) {
         [(SendViewController*)[segue destinationViewController] setPhotos:_photos];
         [(SendViewController*)[segue destinationViewController] setCurrUser:_currUser];
+        [(SendViewController*)[segue destinationViewController] setDelivery:_selectedDelivery];
+        [(SendViewController*)[segue destinationViewController] setPayment:_selectedPayment];
+        [(SendViewController*)[segue destinationViewController] setComments:_commentTextField.text];
     }
 }
 

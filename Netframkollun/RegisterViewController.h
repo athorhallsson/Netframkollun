@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Properties.h"
+#import "User.h"
+#import "PhotoViewController.h"
 
 @interface RegisterViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 

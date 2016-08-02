@@ -37,7 +37,10 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    if ([elementName isEqualToString:@"b:Description"]) {
+    if ([elementName isEqualToString:@"createOrderResult"]) {
+        _orderId = [NSString stringWithString:_parseString];
+    }
+    if ([elementName isEqualToString:@"finalizeOrderResult"]) {
         _orderId = [NSString stringWithString:_parseString];
     }
 }

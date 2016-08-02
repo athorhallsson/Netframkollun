@@ -16,6 +16,9 @@
 @interface SendViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+@property (weak, nonatomic) IBOutlet UILabel *headingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+
 @property (strong, nonatomic) NSMutableArray *photos;
 
 @property (strong, nonatomic) User *currUser;
@@ -25,5 +28,13 @@
 @property (strong, nonatomic) Payment *payment;
 
 @property (strong, nonatomic) NSString *orderId;
+
+@property (nonatomic) NSInteger uploadedCount;
+
+@property (nonatomic) NSString *comments;
+
+@property (weak, nonatomic) IBOutlet UILabel *progressLabel;
+
+@property (strong, nonatomic) NSNumber *minCost;
 
 @end

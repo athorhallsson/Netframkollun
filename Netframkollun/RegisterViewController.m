@@ -9,7 +9,8 @@
 #import "RegisterViewController.h"
 
 @interface RegisterViewController ()
-
+@property (strong, nonatomic) NSString *selectedLocation;
+@property (strong, nonatomic) NSString *selectedPostalCode;
 @end
 
 @implementation RegisterViewController
@@ -59,7 +60,7 @@
 
 - (IBAction)registerPressed:(UIButton *)sender {
     if ([self validateInput]) {
-        [self performSegueWithIdentifier:@"registerSuccess" sender:nil];
+        [self createUser];
     }
 }
 
@@ -158,7 +159,7 @@
     }
     
     NSString *postalCode = [_postalTextField text];
-    if ([postalCode length] != 3) {
+    if ([postalCode isEqualToString:@""]) {
         [self errorMarkTextField:_postalTextField];
         errors++;
     }
@@ -242,12 +243,89 @@
     [task resume];
 }
 
+- (void)createUser {
+    NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/createUser</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">%@</a:To></s:Header><s:Body><createUser xmlns=\"http://imageuploader.digit.is\"><user xmlns:d4p1=\"http://schemas.datacontract.org/2004/07/Digit.ImageUploader.WebService\" xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\"><d4p1:ErrorCode>0</d4p1:ErrorCode><d4p1:address>%@</d4p1:address><d4p1:city>%@</d4p1:city><d4p1:email>%@</d4p1:email><d4p1:id>0</d4p1:id><d4p1:name>%@</d4p1:name><d4p1:password>%@</d4p1:password><d4p1:pcode>%@</d4p1:pcode><d4p1:phone>%@</d4p1:phone><d4p1:ssid>%@</d4p1:ssid><d4p1:storeID>%@</d4p1:storeID></user></createUser></s:Body></s:Envelope>", [Properties restService], [_addressTextField text], _selectedLocation, [_emailTextField text], [_nameTextField text], [_passwordTextField text], _selectedPostalCode, [_phoneTextField text], [_ssnTextField text], [Properties storeId]];
+    NSString *host = [Properties restService];
+    NSURL *sRequestURL = [NSURL URLWithString:host];
+    NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+    NSString *sMessageLength = [NSString stringWithFormat:@"%d", (int)[soapBody length]];
+    
+    [myRequest addValue: @"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
+    [myRequest setHTTPMethod:@"POST"];
+    [myRequest setHTTPBody: [soapBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      _webResponseData = data;
+                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Register User Response: %@", newStr);
+                                      if ([newStr containsString:@"<createUserResult>0</createUserResult>"]) {
+                                          [self sendLogin:[_emailTextField text] withPassword:[_passwordTextField text]];
+                                      }
+                                      else {
+                                          NSLog(@"Register ERROR");
+                                      }
+                                      
+                                      if (error) {
+                                          NSLog(@"%@", error);
+                                      }
+                                  }];
+    [task resume];
+}
+
+- (void)sendLogin:(NSString*)email
+     withPassword:(NSString*)password {
+    NSString *loginSOAPBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Header><a:Action s:mustUnderstand=\"1\">http://imageuploader.digit.is/OrderServiceJS/login</a:Action><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><a:To s:mustUnderstand=\"1\">%@</a:To></s:Header><s:Body><login xmlns=\"http://imageuploader.digit.is\"><email>%@</email><password>%@</password><storeID>%@</storeID></login></s:Body></s:Envelope>", [Properties restService], email, password, [Properties storeId]];
+    
+    NSString *url = [Properties restService];
+    NSURL *sRequestURL = [NSURL URLWithString:url];
+    NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+    NSString *sMessageLength = [NSString stringWithFormat:@"%d", (int)[loginSOAPBody length]];
+    
+    [myRequest addValue: @"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [myRequest addValue:[Properties site] forHTTPHeaderField:@"Host"];
+    [myRequest addValue: [Properties host] forHTTPHeaderField:@"Origin"];
+    [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
+    [myRequest setHTTPMethod:@"POST"];
+    [myRequest setHTTPBody: [loginSOAPBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSString* responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response: %@", responseString);
+                                      User *currUser = [[User alloc] initWithXMLData:data];
+                                      // Success
+                                      if ([responseString containsString:@"<b:ErrorCode>0</b:ErrorCode>"]) {
+                                          [self performSelectorOnMainThread:@selector(login:)
+                                                                 withObject:currUser
+                                                              waitUntilDone:NO];
+                                      }
+                                      else {
+                                          // Alert User
+                                          NSLog(@"Login error");
+                                      }
+                                      if (error) {
+                                          NSLog(@"%@", error);
+                                      }
+                                  }];
+    [task resume];
+}
+
+- (void)login:(id)sender {
+    [self performSegueWithIdentifier:@"registerSuccess" sender:sender];
+}
+
+
 // XML parser
 
 -(void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:
 (NSString *)qName attributes:(NSDictionary *)attributeDict {
-    // NSLog(@"%@", elementName);
     if ([elementName isEqualToString:@"Pcode"]) {
         _inPostCode = YES;
     }
@@ -256,7 +334,6 @@
     }
 }
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    // NSLog(@"%@", string);
     if (_inPostCode) {
         [_pCodes addObject:string];
     }
@@ -267,7 +344,6 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    // NSLog(@"%@", elementName);
     if ([elementName isEqualToString:@"Pcode"]) {
         _inPostCode = NO;
     }
@@ -293,7 +369,19 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    _selectedLocation = [_locations objectAtIndex:row];
+    _selectedPostalCode = [_pCodes objectAtIndex:row];
     [_postalTextField setText:[NSString stringWithFormat:@"%@ - %@", [_pCodes objectAtIndex:row], [_locations objectAtIndex:row]]];
+}
+
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"registerSuccess"]) {
+        [(PhotoViewController*)[segue destinationViewController] setCurrUser:sender];
+    }
 }
 
 

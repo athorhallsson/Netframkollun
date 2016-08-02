@@ -25,7 +25,8 @@
     [super viewDidLoad];
     
     if (!_imageCounter) {
-        _imageCounter = 0;
+        // Should be one and then incremented to 2
+        _imageCounter = 1;
     }
     
     // Fetch image types

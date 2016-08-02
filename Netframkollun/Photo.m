@@ -7,6 +7,7 @@
 //
 
 #import "Photo.h"
+@import Foundation;
 
 @implementation Photo
 
@@ -19,15 +20,12 @@
     _imageId = [self getUUID];
     _count = @1;
     _imageItemId = itemId;
+    _imageName = @"MyPhotoName";
     return self;
 }
 
-- (NSString *)getUUID
-{
-    CFUUIDRef theUUID = CFUUIDCreate(NULL);
-    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
-    CFRelease(theUUID);
-    return (__bridge NSString *)string;
+- (NSString *)getUUID {
+    return [[NSUUID UUID] UUIDString];
 }
 
 @end

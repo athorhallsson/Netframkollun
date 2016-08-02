@@ -13,6 +13,7 @@
 		A5280C591CC97561000889BC /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C581CC97561000889BC /* OrderViewController.m */; };
 		A5280C5C1CC97576000889BC /* SendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C5B1CC97576000889BC /* SendViewController.m */; };
 		A5280C5F1CC98135000889BC /* Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C5E1CC98135000889BC /* Properties.m */; };
+		A57BF48A1D4E6DD200C09D2C /* CreateOrderResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A57BF4891D4E6DD200C09D2C /* CreateOrderResponseParser.m */; };
 		A5C073781CCEC27800CB83C7 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C073771CCEC27800CB83C7 /* Payment.m */; };
 		A5C0737B1CCEC29600CB83C7 /* Delivery.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C0737A1CCEC29600CB83C7 /* Delivery.m */; };
 		A5C0737E1CCEC2CB00CB83C7 /* ImageType.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C0737D1CCEC2CB00CB83C7 /* ImageType.m */; };
@@ -27,6 +28,7 @@
 		A5DAE48E1CC69CA10078D15E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5DAE48C1CC69CA10078D15E /* LaunchScreen.storyboard */; };
 		A5DD8A531CC8CF0E008C33E4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DD8A521CC8CF0E008C33E4 /* LoginViewController.m */; };
 		A5DD8A561CC8F547008C33E4 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DD8A551CC8F547008C33E4 /* RegisterViewController.m */; };
+		A5E72B821CD01179007FC874 /* PriceList.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E72B811CD01179007FC874 /* PriceList.m */; };
 		A5F4779B1CC77B4200E859C2 /* PhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F4779A1CC77B4200E859C2 /* PhotoDetailsViewController.m */; };
 		A5F6395D1CCD656800E78C53 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F6395C1CCD656800E78C53 /* User.m */; };
 		CE8A387C8BCC205221887211 /* Pods_Netframkollun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F691300B1E77FD5DC5D17E /* Pods_Netframkollun.framework */; };
@@ -47,6 +49,8 @@
 		A5280C5B1CC97576000889BC /* SendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendViewController.m; sourceTree = "<group>"; };
 		A5280C5D1CC98135000889BC /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
 		A5280C5E1CC98135000889BC /* Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Properties.m; sourceTree = "<group>"; };
+		A57BF4881D4E6DD200C09D2C /* CreateOrderResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateOrderResponseParser.h; sourceTree = "<group>"; };
+		A57BF4891D4E6DD200C09D2C /* CreateOrderResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateOrderResponseParser.m; sourceTree = "<group>"; };
 		A597A8481CCB8081004310DE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A5C073761CCEC27800CB83C7 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
 		A5C073771CCEC27800CB83C7 /* Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 		A5DD8A521CC8CF0E008C33E4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A5DD8A541CC8F547008C33E4 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		A5DD8A551CC8F547008C33E4 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		A5E72B801CD01179007FC874 /* PriceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceList.h; sourceTree = "<group>"; };
+		A5E72B811CD01179007FC874 /* PriceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceList.m; sourceTree = "<group>"; };
 		A5F477991CC77B4200E859C2 /* PhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDetailsViewController.h; sourceTree = "<group>"; };
 		A5F4779A1CC77B4200E859C2 /* PhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailsViewController.m; sourceTree = "<group>"; };
 		A5F6395B1CCD656800E78C53 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -131,6 +137,10 @@
 				A5C0737D1CCEC2CB00CB83C7 /* ImageType.m */,
 				A5C073851CCED59200CB83C7 /* ImageTypeParser.h */,
 				A5C073861CCED59200CB83C7 /* ImageTypeParser.m */,
+				A5E72B801CD01179007FC874 /* PriceList.h */,
+				A5E72B811CD01179007FC874 /* PriceList.m */,
+				A57BF4881D4E6DD200C09D2C /* CreateOrderResponseParser.h */,
+				A57BF4891D4E6DD200C09D2C /* CreateOrderResponseParser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -249,6 +259,7 @@
 				TargetAttributes = {
 					A5DAE47A1CC69CA10078D15E = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = N64Q4MS8FA;
 					};
 				};
 			};
@@ -343,6 +354,7 @@
 				A5C073841CCED41000CB83C7 /* DeliveryParser.m in Sources */,
 				A5F4779B1CC77B4200E859C2 /* PhotoDetailsViewController.m in Sources */,
 				A5C0737B1CCEC29600CB83C7 /* Delivery.m in Sources */,
+				A57BF48A1D4E6DD200C09D2C /* CreateOrderResponseParser.m in Sources */,
 				A5DAE4831CC69CA10078D15E /* AppDelegate.m in Sources */,
 				A5C073811CCECF8400CB83C7 /* PaymentParser.m in Sources */,
 				A5C073781CCEC27800CB83C7 /* Payment.m in Sources */,
@@ -350,6 +362,7 @@
 				A5DD8A531CC8CF0E008C33E4 /* LoginViewController.m in Sources */,
 				A5280C5F1CC98135000889BC /* Properties.m in Sources */,
 				A5280C5C1CC97576000889BC /* SendViewController.m in Sources */,
+				A5E72B821CD01179007FC874 /* PriceList.m in Sources */,
 				A5F6395D1CCD656800E78C53 /* User.m in Sources */,
 				A510F3701CC6E222002721D7 /* PhotoCollectionViewCell.m in Sources */,
 				A5DAE4801CC69CA10078D15E /* main.m in Sources */,
@@ -469,6 +482,7 @@
 			baseConfigurationReference = 50F147E8E80C4F9D51B2FEE4 /* Pods-Netframkollun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Netframkollun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -482,6 +496,7 @@
 			baseConfigurationReference = 0779D82E4183983079413949 /* Pods-Netframkollun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Netframkollun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

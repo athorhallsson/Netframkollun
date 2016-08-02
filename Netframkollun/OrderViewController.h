@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSDictionary *imageTypes;
 @property (strong, nonatomic) NSDictionary *payments;
 @property (strong, nonnull) NSNumber *totalPrice;
+@property (strong, nonatomic) NSNumber *minCost;
 
 @property (strong, nonatomic) User *currUser;
 

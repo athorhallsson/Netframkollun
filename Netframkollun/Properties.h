@@ -15,5 +15,6 @@
 + (NSString*)restService;
 + (NSString*)webService;
 + (NSString*)storeId;
++ (NSString*)uploadService;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Oxf-iC-wHF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Oxf-iC-wHF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -400,7 +400,7 @@
                         <outlet property="repeatPasswordTextField" destination="zqc-8Q-89d" id="fFV-re-IDf"/>
                         <outlet property="scrollView" destination="JLi-Y9-Z8Z" id="osY-DW-skc"/>
                         <outlet property="ssnTextField" destination="swF-3i-4Ng" id="GlJ-ab-DDT"/>
-                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="registerSuccess" id="nOf-2G-AV9"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="registerSuccess" id="PCe-F5-sfJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2WK-qo-guf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -420,13 +420,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bíðið á meðan myndirnar eru sendar..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPC-vu-kMO">
-                                <rect key="frame" x="148" y="231" width="304" height="22"/>
+                                <rect key="frame" x="148" y="232" width="304" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vinsamlegast" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtF-cg-Z0g">
-                                <rect key="frame" x="140" y="149" width="320" height="62.5"/>
+                                <rect key="frame" x="140" y="149" width="320" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="FeD-VJ-m88"/>
                                 </constraints>
@@ -435,17 +435,29 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="moF-zE-U2c">
-                                <rect key="frame" x="290" y="283.5" width="20" height="20"/>
+                                <rect key="frame" x="290" y="284" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 / 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1w-q9-hI8">
+                                <rect key="frame" x="148" y="380" width="304" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="P1G-4o-bQM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.074020686490000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="s1w-q9-hI8" firstAttribute="trailing" secondItem="jPC-vu-kMO" secondAttribute="trailing" id="4BN-nY-tNK"/>
+                            <constraint firstItem="s1w-q9-hI8" firstAttribute="leading" secondItem="jPC-vu-kMO" secondAttribute="leading" id="7eV-1s-Ma9"/>
                             <constraint firstItem="moF-zE-U2c" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="8Dr-B5-M9U"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="top" secondItem="LtF-cg-Z0g" secondAttribute="bottom" constant="20" id="XL6-Cs-gDc"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="bDp-9G-X3b"/>
                             <constraint firstItem="LtF-cg-Z0g" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="eYx-zp-wgA"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="g06-2I-mlt"/>
                             <constraint firstItem="LtF-cg-Z0g" firstAttribute="top" secondItem="gPB-R2-bkU" secondAttribute="bottom" constant="129" id="g59-Kt-bRH"/>
+                            <constraint firstItem="s1w-q9-hI8" firstAttribute="top" secondItem="moF-zE-U2c" secondAttribute="bottom" constant="76" id="jYR-vh-FLU"/>
                             <constraint firstItem="moF-zE-U2c" firstAttribute="top" secondItem="jPC-vu-kMO" secondAttribute="bottom" constant="30" id="kEf-dh-VEP"/>
                         </constraints>
                         <variation key="default">
@@ -456,6 +468,9 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="moF-zE-U2c" id="jG8-rL-ArM"/>
+                        <outlet property="headingLabel" destination="LtF-cg-Z0g" id="5CI-UO-cKe"/>
+                        <outlet property="messageLabel" destination="jPC-vu-kMO" id="vjy-g3-7CJ"/>
+                        <outlet property="progressLabel" destination="s1w-q9-hI8" id="b3v-zp-LNL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhp-cA-Rqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -726,6 +741,6 @@
         <image name="Logo" width="400" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9ft-rx-fyT"/>
+        <segue reference="PCe-F5-sfJ"/>
     </inferredMetricsTieBreakers>
 </document>
