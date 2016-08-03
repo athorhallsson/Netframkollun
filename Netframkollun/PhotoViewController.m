@@ -76,7 +76,7 @@
     _imageCounter++;
     Photo *newPhoto = [[Photo alloc] initWithImage:chosenImage
                                   andWithImageType:_defaultImageType
-                                           andName:[NSString stringWithFormat:@"photo%lu.jpg", _imageCounter]];
+                                           andName:[NSString stringWithFormat:@"photo%lu.jpg", (long)_imageCounter]];
     [_photos addObject:newPhoto];
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
