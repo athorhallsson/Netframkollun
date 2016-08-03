@@ -18,7 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _sizePickerArray = [_sizePickerData allValues];
+    NSArray *sortedArray = [[_sizePickerData allValues] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSString *first = [(ImageType*)a imageTypeDescription];
+        NSString *second = [(ImageType*)b imageTypeDescription];
+        return [first compare:second];
+    }];
+    
+    _sizePickerArray = sortedArray;
     _countPickerData = [[NSMutableArray alloc] init];
     
     // Init Fields

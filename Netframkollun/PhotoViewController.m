@@ -76,7 +76,7 @@
     _imageCounter++;
     Photo *newPhoto = [[Photo alloc] initWithImage:chosenImage
                                   andWithImageType:_defaultImageType
-                                andWithImageItemId:[NSNumber numberWithInteger:_imageCounter]];
+                                           andName:[NSString stringWithFormat:@"photo%lu.jpg", _imageCounter]];
     [_photos addObject:newPhoto];
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -252,6 +252,7 @@
         [(OrderViewController*)[segue destinationViewController] setImageTypes:_imageTypes];
         [(OrderViewController*)[segue destinationViewController] setPayments:_payments];
         [(OrderViewController*)[segue destinationViewController] setCurrUser:_currUser];
+        [(OrderViewController*)[segue destinationViewController] setMinCost:_minCost];
     }
 }
 

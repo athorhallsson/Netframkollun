@@ -13,14 +13,13 @@
 
 - (id)initWithImage:(UIImage *)myImage
    andWithImageType:(ImageType *)type
- andWithImageItemId:(NSNumber *)itemId {
+            andName:(NSString *)name {
     self = [super init];
     _image = myImage;
     _imageType = type;
     _imageId = [self getUUID];
     _count = @1;
-    _imageItemId = itemId;
-    _imageName = @"MyPhotoName";
+    _imageName = name;
     return self;
 }
 

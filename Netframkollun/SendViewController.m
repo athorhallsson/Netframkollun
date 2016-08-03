@@ -69,7 +69,7 @@
 }
 
 - (NSString *)createImageItemFromPhoto:(Photo *)photo {
-    return [NSString stringWithFormat:@"<d4p1:OrderImage><d4p1:Count>%@</d4p1:Count><d4p1:ErrorCode>0</d4p1:ErrorCode><d4p1:FileName>%@</d4p1:FileName><d4p1:ImageID>%@</d4p1:ImageID><d4p1:ImageItemID>%@</d4p1:ImageItemID><d4p1:Price>%@</d4p1:Price><d4p1:Uploaded>false</d4p1:Uploaded></d4p1:OrderImage>", photo.count, photo.imageName, photo.imageId, photo.imageItemId, photo.imageType.price];
+    return [NSString stringWithFormat:@"<d4p1:OrderImage><d4p1:Count>%@</d4p1:Count><d4p1:ErrorCode>0</d4p1:ErrorCode><d4p1:FileName>%@</d4p1:FileName><d4p1:ImageID>%@</d4p1:ImageID><d4p1:ImageItemID>%@</d4p1:ImageItemID><d4p1:Price>%@</d4p1:Price><d4p1:Uploaded>false</d4p1:Uploaded></d4p1:OrderImage>", photo.count, photo.imageName, photo.imageId, photo.imageType.imageTypeId, photo.imageType.price];
 }
 
 - (void)uploadPhotos {
@@ -79,11 +79,10 @@
 }
 
 - (void)uploadPhoto:(Photo*)photo {
-   // Not rest
-    // not web
     NSString *host = [Properties uploadService];
-  //NSData *data = UIImagePNGRepresentation(photo.image);
-    NSData *data = UIImageJPEGRepresentation(photo.image, 1.0);
+    // NSData *data = UIImagePNGRepresentation(photo.image);
+    // Save JPEG image with 90% quality
+    NSData *data = UIImageJPEGRepresentation(photo.image, 0.9);
     NSString *stringImage = [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
     
     NSString *soapBody = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><s:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\"><s:Body><uploadImage xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://digit.is/ImageUploader\"><iID>%@</iID><image>%@</image></uploadImage></s:Body></s:Envelope>", photo.imageId, stringImage];
@@ -105,7 +104,10 @@
                                       NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                       NSLog(@"UPLOAD PHOTO RESPONSE: %@", newStr);
                                       _uploadedCount++;
-                                      [self updateProgress];
+                                      [self performSelectorOnMainThread:@selector(updateProgress)
+                                                             withObject:nil
+                                                          waitUntilDone:NO];
+                            
                                       if (_uploadedCount == [_photos count]) {
                                           [self finalizeOrder];
                                       }
@@ -139,13 +141,10 @@
                                       CreateOrderResponseParser *rp = [[CreateOrderResponseParser alloc] initWithXMLData:data];
                                       NSString *msg = [NSString stringWithString:rp.orderId];
                                       NSArray *substrings = [msg componentsSeparatedByString:@"."];
-                                      
-                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                          [_activityIndicator setHidesWhenStopped:true];
-                                          [_activityIndicator stopAnimating];
-                                          [_headingLabel setText:@"Takk fyrir"];
-                                          [_messageLabel setText:[substrings objectAtIndex:0]];
-                                      });
+                                
+                                      [self performSelectorOnMainThread:@selector(displaySuccess:)
+                                                             withObject:[substrings objectAtIndex:0]
+                                                          waitUntilDone:NO];
                                       if (error) {
                                           NSLog(@"Error %@", error);
                                       }
@@ -155,6 +154,13 @@
 
 -(void) updateProgress {
     [_progressLabel setText:[NSString stringWithFormat:@"%ld / %ld", (long)_uploadedCount, (long)[_photos count]]];
+}
+
+-(void) displaySuccess:(NSString *)message {
+    [_activityIndicator setHidesWhenStopped:true];
+    [_activityIndicator stopAnimating];
+    [_headingLabel setText:@"Takk fyrir"];
+    [_messageLabel setText:message];
 }
 
 /*
