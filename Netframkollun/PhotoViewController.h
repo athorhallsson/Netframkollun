@@ -17,6 +17,7 @@
 #import "DeliveryParser.h"
 #import "ImageTypeParser.h"
 #import "PriceList.h"
+#import "PhotoNavigationController.h"
 
 @interface PhotoViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 

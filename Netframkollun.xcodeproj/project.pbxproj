@@ -14,6 +14,7 @@
 		A5280C5C1CC97576000889BC /* SendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C5B1CC97576000889BC /* SendViewController.m */; };
 		A5280C5F1CC98135000889BC /* Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C5E1CC98135000889BC /* Properties.m */; };
 		A57BF48A1D4E6DD200C09D2C /* CreateOrderResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A57BF4891D4E6DD200C09D2C /* CreateOrderResponseParser.m */; };
+		A58D52A61D5AAE0D00634027 /* PhotoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58D52A51D5AAE0D00634027 /* PhotoNavigationController.m */; };
 		A5C073781CCEC27800CB83C7 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C073771CCEC27800CB83C7 /* Payment.m */; };
 		A5C0737B1CCEC29600CB83C7 /* Delivery.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C0737A1CCEC29600CB83C7 /* Delivery.m */; };
 		A5C0737E1CCEC2CB00CB83C7 /* ImageType.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C0737D1CCEC2CB00CB83C7 /* ImageType.m */; };
@@ -51,6 +52,8 @@
 		A5280C5E1CC98135000889BC /* Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Properties.m; sourceTree = "<group>"; };
 		A57BF4881D4E6DD200C09D2C /* CreateOrderResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateOrderResponseParser.h; sourceTree = "<group>"; };
 		A57BF4891D4E6DD200C09D2C /* CreateOrderResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateOrderResponseParser.m; sourceTree = "<group>"; };
+		A58D52A41D5AAE0D00634027 /* PhotoNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoNavigationController.h; sourceTree = "<group>"; };
+		A58D52A51D5AAE0D00634027 /* PhotoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoNavigationController.m; sourceTree = "<group>"; };
 		A597A8481CCB8081004310DE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A5C073761CCEC27800CB83C7 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
 		A5C073771CCEC27800CB83C7 /* Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
@@ -127,20 +130,12 @@
 				A5F6395C1CCD656800E78C53 /* User.m */,
 				A5C073761CCEC27800CB83C7 /* Payment.h */,
 				A5C073771CCEC27800CB83C7 /* Payment.m */,
-				A5C0737F1CCECF8400CB83C7 /* PaymentParser.h */,
-				A5C073801CCECF8400CB83C7 /* PaymentParser.m */,
 				A5C073791CCEC29600CB83C7 /* Delivery.h */,
 				A5C0737A1CCEC29600CB83C7 /* Delivery.m */,
-				A5C073821CCED41000CB83C7 /* DeliveryParser.h */,
-				A5C073831CCED41000CB83C7 /* DeliveryParser.m */,
 				A5C0737C1CCEC2CB00CB83C7 /* ImageType.h */,
 				A5C0737D1CCEC2CB00CB83C7 /* ImageType.m */,
-				A5C073851CCED59200CB83C7 /* ImageTypeParser.h */,
-				A5C073861CCED59200CB83C7 /* ImageTypeParser.m */,
 				A5E72B801CD01179007FC874 /* PriceList.h */,
 				A5E72B811CD01179007FC874 /* PriceList.m */,
-				A57BF4881D4E6DD200C09D2C /* CreateOrderResponseParser.h */,
-				A57BF4891D4E6DD200C09D2C /* CreateOrderResponseParser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -152,6 +147,21 @@
 				A510F36F1CC6E222002721D7 /* PhotoCollectionViewCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		A5A178A11D5F583F00CBCDA8 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				A5C0737F1CCECF8400CB83C7 /* PaymentParser.h */,
+				A5C073801CCECF8400CB83C7 /* PaymentParser.m */,
+				A5C073821CCED41000CB83C7 /* DeliveryParser.h */,
+				A5C073831CCED41000CB83C7 /* DeliveryParser.m */,
+				A5C073851CCED59200CB83C7 /* ImageTypeParser.h */,
+				A5C073861CCED59200CB83C7 /* ImageTypeParser.m */,
+				A57BF4881D4E6DD200C09D2C /* CreateOrderResponseParser.h */,
+				A57BF4891D4E6DD200C09D2C /* CreateOrderResponseParser.m */,
+			);
+			name = Parsers;
 			sourceTree = "<group>";
 		};
 		A5DAE4721CC69CA10078D15E = {
@@ -178,6 +188,7 @@
 				A5DAE4961CC69CE90078D15E /* Delegates */,
 				A5DAE4951CC69CCA0078D15E /* Controllers */,
 				A510F36B1CC6C0FE002721D7 /* Model */,
+				A5A178A11D5F583F00CBCDA8 /* Parsers */,
 				A510F3711CC6E227002721D7 /* View */,
 				A5DAE48A1CC69CA10078D15E /* Assets.xcassets */,
 				A5DAE4871CC69CA10078D15E /* Main.storyboard */,
@@ -202,6 +213,8 @@
 			children = (
 				A5DAE4841CC69CA10078D15E /* PhotoViewController.h */,
 				A5DAE4851CC69CA10078D15E /* PhotoViewController.m */,
+				A58D52A41D5AAE0D00634027 /* PhotoNavigationController.h */,
+				A58D52A51D5AAE0D00634027 /* PhotoNavigationController.m */,
 				A5F477991CC77B4200E859C2 /* PhotoDetailsViewController.h */,
 				A5F4779A1CC77B4200E859C2 /* PhotoDetailsViewController.m */,
 				A5DD8A511CC8CF0E008C33E4 /* LoginViewController.h */,
@@ -232,12 +245,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5DAE4921CC69CA10078D15E /* Build configuration list for PBXNativeTarget "Netframkollun" */;
 			buildPhases = (
-				C15CA3C7BCA03E3AC8136E8C /* 📦 Check Pods Manifest.lock */,
+				C15CA3C7BCA03E3AC8136E8C /* [CP] Check Pods Manifest.lock */,
 				A5DAE4771CC69CA10078D15E /* Sources */,
 				A5DAE4781CC69CA10078D15E /* Frameworks */,
 				A5DAE4791CC69CA10078D15E /* Resources */,
-				21A1AAEDC59CE3B52970E1CC /* 📦 Embed Pods Frameworks */,
-				1B546CB2B872AF6C76B699E3 /* 📦 Copy Pods Resources */,
+				21A1AAEDC59CE3B52970E1CC /* [CP] Embed Pods Frameworks */,
+				1B546CB2B872AF6C76B699E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -296,14 +309,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B546CB2B872AF6C76B699E3 /* 📦 Copy Pods Resources */ = {
+		1B546CB2B872AF6C76B699E3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,14 +324,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Netframkollun/Pods-Netframkollun-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		21A1AAEDC59CE3B52970E1CC /* 📦 Embed Pods Frameworks */ = {
+		21A1AAEDC59CE3B52970E1CC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,14 +339,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Netframkollun/Pods-Netframkollun-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C15CA3C7BCA03E3AC8136E8C /* 📦 Check Pods Manifest.lock */ = {
+		C15CA3C7BCA03E3AC8136E8C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +368,7 @@
 				A5F4779B1CC77B4200E859C2 /* PhotoDetailsViewController.m in Sources */,
 				A5C0737B1CCEC29600CB83C7 /* Delivery.m in Sources */,
 				A57BF48A1D4E6DD200C09D2C /* CreateOrderResponseParser.m in Sources */,
+				A58D52A61D5AAE0D00634027 /* PhotoNavigationController.m in Sources */,
 				A5DAE4831CC69CA10078D15E /* AppDelegate.m in Sources */,
 				A5C073811CCECF8400CB83C7 /* PaymentParser.m in Sources */,
 				A5C073781CCEC27800CB83C7 /* Payment.m in Sources */,

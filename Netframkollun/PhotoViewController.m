@@ -25,8 +25,7 @@
     [super viewDidLoad];
     
     if (!_imageCounter) {
-        // Should be one and then incremented to 2
-        _imageCounter = 1;
+        _imageCounter = 0;
     }
     
     // Fetch image types
@@ -139,6 +138,7 @@
                                       //NSLog(@"Response: %@", newStr);
                                       ImageTypeParser *itp = [[ImageTypeParser alloc] initWithXMLData:data];
                                       _imageTypes = [itp imageTypes];
+                                      // HARD CODED 10x15
                                       _defaultImageType = [[itp imageTypes] objectForKey:@"2"];
                                       if (error) {
                                           NSLog(@"%@", error);
@@ -166,8 +166,8 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                      NSLog(@"Response: %@", newStr);
+                                      //NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      //NSLog(@"Response: %@", newStr);
                                       DeliveryParser *pd = [[DeliveryParser alloc] initWithXMLData:data];
                                       _deliveries = pd.deliveries;
                                       if (error) {
@@ -196,8 +196,8 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                      NSLog(@"Response: %@", newStr);
+                                      //NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      //NSLog(@"Response: %@", newStr);
                                       PaymentParser *pp = [[PaymentParser alloc] initWithXMLData:data];
                                       _payments = pp.payments;
                                       if (error) {
@@ -226,8 +226,8 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                      NSLog(@"Response: %@", newStr);
+                                      //NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      //NSLog(@"Response: %@", newStr);
                                       PriceList *pl = [[PriceList alloc] initWithXMLData:data];
                                       _minCost = [NSNumber numberWithInteger:[pl.minCost integerValue]];
                                       if (error) {
@@ -243,8 +243,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"PhotoDetails"]) {
-        [(PhotoDetailsViewController *)[segue destinationViewController] setDetailPhoto:(Photo *)sender];
-        [(PhotoDetailsViewController *)[segue destinationViewController] setSizePickerData:self.imageTypes];
+    //    [(PhotoDetailsViewController *)[segue destinationViewController] setDetailPhoto:(Photo *)sender];
+    //    [(PhotoDetailsViewController *)[segue destinationViewController] setSizePickerData:_imageTypes];
+        [(PhotoNavigationController *)[segue destinationViewController] setDetailPhoto:(Photo *)sender];
+        [(PhotoNavigationController *)[segue destinationViewController] setSizePickerData:_imageTypes];
+
     }
     if ([segue.identifier isEqualToString:@"OrderSegue"]) {
         [(OrderViewController*)[segue destinationViewController] setPhotos:_photos];

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Photo.h"
 #import "ImageType.h"
+#import <RSKImageCropper/RSKImageCropper.h>
 
-@interface PhotoDetailsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface PhotoDetailsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) Photo *detailPhoto;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

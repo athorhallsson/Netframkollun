@@ -13,6 +13,7 @@
 @interface Photo : NSObject
 
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *originalImage;
 @property (nonatomic, strong) ImageType *imageType;
 @property (nonatomic, strong) NSNumber* count;
 @property (nonatomic, strong) NSString* imageId;
@@ -20,7 +21,5 @@
 
 - (id)initWithImage:(UIImage *)myImage andWithImageType:(ImageType *)type
             andName:(NSString *)name;
-
-- (NSString *)getUUID;
 
 @end

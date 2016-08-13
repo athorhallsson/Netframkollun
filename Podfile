@@ -1,7 +1,6 @@
 platform :ios, '9.0'
-
-inhibit_all_warnings!
 use_frameworks!
 
 target 'Netframkollun' do
+	pod 'RSKImageCropper', '~> 1.5'
 end

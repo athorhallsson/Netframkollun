@@ -16,6 +16,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zmt-tf-CyX">
                         <rect key="frame" x="8" y="8" width="159" height="135"/>
+                        <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10x15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fl-x7-l3Y">
                         <rect key="frame" x="8" y="147" width="112" height="20"/>
@@ -35,7 +36,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="0.64856328299999999" green="0.72448951449999999" blue="0.73713699489999995" alpha="0.48009923986486486" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="9fl-x7-l3Y" firstAttribute="leading" secondItem="CNj-th-cI4" secondAttribute="trailing" constant="-159" id="C7w-sj-zbH"/>
                 <constraint firstItem="Zmt-tf-CyX" firstAttribute="top" secondItem="NZz-HW-ZGC" secondAttribute="topMargin" id="N1s-Is-mVp"/>

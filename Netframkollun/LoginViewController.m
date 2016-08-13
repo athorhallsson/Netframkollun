@@ -58,8 +58,8 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      NSString* responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                      NSLog(@"Response: %@", responseString);
+                                        NSString* responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  //    NSLog(@"Response: %@", responseString);
                                       _currUser = [[User alloc] initWithXMLData:data];
                                       // Success
                                       if ([responseString containsString:@"<b:ErrorCode>0</b:ErrorCode>"]) {

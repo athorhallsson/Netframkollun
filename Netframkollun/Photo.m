@@ -16,15 +16,12 @@
             andName:(NSString *)name {
     self = [super init];
     _image = myImage;
+    _originalImage = myImage;
     _imageType = type;
-    _imageId = [self getUUID];
+    _imageId = [[NSUUID UUID] UUIDString];
     _count = @1;
     _imageName = name;
     return self;
-}
-
-- (NSString *)getUUID {
-    return [[NSUUID UUID] UUIDString];
 }
 
 @end
