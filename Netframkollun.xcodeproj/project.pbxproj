@@ -15,6 +15,8 @@
 		A5280C5F1CC98135000889BC /* Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = A5280C5E1CC98135000889BC /* Properties.m */; };
 		A57BF48A1D4E6DD200C09D2C /* CreateOrderResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A57BF4891D4E6DD200C09D2C /* CreateOrderResponseParser.m */; };
 		A58D52A61D5AAE0D00634027 /* PhotoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58D52A51D5AAE0D00634027 /* PhotoNavigationController.m */; };
+		A5BF795F1D685CBC00FA4EC1 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF795E1D685CBC00FA4EC1 /* NetworkManager.m */; };
+		A5BF79661D6866D700FA4EC1 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF79651D6866D700FA4EC1 /* SessionManager.m */; };
 		A5C073781CCEC27800CB83C7 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C073771CCEC27800CB83C7 /* Payment.m */; };
 		A5C0737B1CCEC29600CB83C7 /* Delivery.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C0737A1CCEC29600CB83C7 /* Delivery.m */; };
 		A5C0737E1CCEC2CB00CB83C7 /* ImageType.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C0737D1CCEC2CB00CB83C7 /* ImageType.m */; };
@@ -55,6 +57,10 @@
 		A58D52A41D5AAE0D00634027 /* PhotoNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoNavigationController.h; sourceTree = "<group>"; };
 		A58D52A51D5AAE0D00634027 /* PhotoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoNavigationController.m; sourceTree = "<group>"; };
 		A597A8481CCB8081004310DE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A5BF795D1D685CBC00FA4EC1 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		A5BF795E1D685CBC00FA4EC1 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		A5BF79641D6866D700FA4EC1 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
+		A5BF79651D6866D700FA4EC1 /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
 		A5C073761CCEC27800CB83C7 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
 		A5C073771CCEC27800CB83C7 /* Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
 		A5C073791CCEC29600CB83C7 /* Delivery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delivery.h; sourceTree = "<group>"; };
@@ -164,6 +170,17 @@
 			name = Parsers;
 			sourceTree = "<group>";
 		};
+		A5BF795C1D685C4C00FA4EC1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A5BF795D1D685CBC00FA4EC1 /* NetworkManager.h */,
+				A5BF795E1D685CBC00FA4EC1 /* NetworkManager.m */,
+				A5BF79641D6866D700FA4EC1 /* SessionManager.h */,
+				A5BF79651D6866D700FA4EC1 /* SessionManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		A5DAE4721CC69CA10078D15E = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +205,7 @@
 				A5DAE4961CC69CE90078D15E /* Delegates */,
 				A5DAE4951CC69CCA0078D15E /* Controllers */,
 				A510F36B1CC6C0FE002721D7 /* Model */,
+				A5BF795C1D685C4C00FA4EC1 /* Managers */,
 				A5A178A11D5F583F00CBCDA8 /* Parsers */,
 				A510F3711CC6E227002721D7 /* View */,
 				A5DAE48A1CC69CA10078D15E /* Assets.xcassets */,
@@ -364,6 +382,7 @@
 				A5C073871CCED59200CB83C7 /* ImageTypeParser.m in Sources */,
 				A510F36A1CC6C0EB002721D7 /* Photo.m in Sources */,
 				A5DAE4861CC69CA10078D15E /* PhotoViewController.m in Sources */,
+				A5BF79661D6866D700FA4EC1 /* SessionManager.m in Sources */,
 				A5C073841CCED41000CB83C7 /* DeliveryParser.m in Sources */,
 				A5F4779B1CC77B4200E859C2 /* PhotoDetailsViewController.m in Sources */,
 				A5C0737B1CCEC29600CB83C7 /* Delivery.m in Sources */,
@@ -375,6 +394,7 @@
 				A5280C591CC97561000889BC /* OrderViewController.m in Sources */,
 				A5DD8A531CC8CF0E008C33E4 /* LoginViewController.m in Sources */,
 				A5280C5F1CC98135000889BC /* Properties.m in Sources */,
+				A5BF795F1D685CBC00FA4EC1 /* NetworkManager.m in Sources */,
 				A5280C5C1CC97576000889BC /* SendViewController.m in Sources */,
 				A5E72B821CD01179007FC874 /* PriceList.m in Sources */,
 				A5F6395D1CCD656800E78C53 /* User.m in Sources */,

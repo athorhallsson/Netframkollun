@@ -11,7 +11,12 @@
 #import "User.h"
 #import "PhotoViewController.h"
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate>
+@protocol LoginInterface
+- (void)login:(id)sender;
+- (void)loginError:(id)sender;
+@end
+
+@interface LoginViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate, LoginInterface>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -25,5 +30,8 @@
 @property (strong, nonatomic) User *currUser;
 
 - (IBAction)loginButtonPressed:(UIButton *)sender;
+
+- (void)loginError:(id)sender;
+- (void)login:(id)sender;
 
 @end

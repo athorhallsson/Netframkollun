@@ -10,14 +10,11 @@
 #import "User.h"
 #import "Properties.h"
 #import "Photo.h"
+#import "PriceList.h"
 #import "PhotoCollectionViewCell.h"
 #import "PhotoDetailsViewController.h"
-#import "OrderViewController.h"
-#import "PaymentParser.h"
-#import "DeliveryParser.h"
-#import "ImageTypeParser.h"
-#import "PriceList.h"
 #import "PhotoNavigationController.h"
+#import "OrderViewController.h"
 
 @interface PhotoViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -26,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (strong, nonatomic) NSMutableArray *photos;
+@property (strong, nonatomic) ImageType *defaultImageType;
 
 @property (strong, nonatomic) User *currUser;
 

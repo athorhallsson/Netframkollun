@@ -8,7 +8,7 @@
         <!--Photo View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PhotoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photoController" id="BYZ-38-t0r" customClass="PhotoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -420,7 +420,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="jPC-vu-kMO">
-                                <rect key="frame" x="164.5" y="227.5" width="272" height="60"/>
+                                <rect key="frame" x="164" y="228" width="272" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="GKg-e2-DLN"/>
                                 </constraints>
@@ -431,7 +431,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vinsamlegast" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtF-cg-Z0g">
-                                <rect key="frame" x="140" y="149" width="320" height="58.5"/>
+                                <rect key="frame" x="140" y="149" width="320" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="FeD-VJ-m88"/>
                                 </constraints>
@@ -440,7 +440,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 / 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1w-q9-hI8">
-                                <rect key="frame" x="164.5" y="382.5" width="272" height="93"/>
+                                <rect key="frame" x="164" y="383" width="272" height="93"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="93" id="P1G-4o-bQM"/>
                                 </constraints>
@@ -449,14 +449,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="moF-zE-U2c">
-                                <rect key="frame" x="290" y="299.5" width="20" height="20"/>
+                                <rect key="frame" x="290" y="300" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btd-ud-DSh">
+                                <rect key="frame" x="164" y="502" width="272" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Aftur á forsíðu">
+                                    <color key="titleColor" red="0.91985120480000004" green="1" blue="0.93108539180000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="showDetail" id="MHn-2u-KZR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.074020686490000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="s1w-q9-hI8" firstAttribute="trailing" secondItem="jPC-vu-kMO" secondAttribute="trailing" id="4BN-nY-tNK"/>
                             <constraint firstItem="s1w-q9-hI8" firstAttribute="leading" secondItem="jPC-vu-kMO" secondAttribute="leading" id="7eV-1s-Ma9"/>
                             <constraint firstItem="moF-zE-U2c" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="8Dr-B5-M9U"/>
+                            <constraint firstItem="Btd-ud-DSh" firstAttribute="top" secondItem="s1w-q9-hI8" secondAttribute="bottom" constant="26" id="Dyt-cJ-qDS"/>
+                            <constraint firstItem="Btd-ud-DSh" firstAttribute="centerX" secondItem="moF-zE-U2c" secondAttribute="centerX" id="GAa-8m-yus"/>
+                            <constraint firstItem="Btd-ud-DSh" firstAttribute="leading" secondItem="s1w-q9-hI8" secondAttribute="leading" id="Sj1-xO-z5t"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="top" secondItem="LtF-cg-Z0g" secondAttribute="bottom" constant="20" id="XL6-Cs-gDc"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="bDp-9G-X3b"/>
                             <constraint firstItem="LtF-cg-Z0g" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="eYx-zp-wgA"/>
@@ -473,6 +486,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="moF-zE-U2c" id="jG8-rL-ArM"/>
+                        <outlet property="backButton" destination="Btd-ud-DSh" id="kc3-Kn-AHQ"/>
                         <outlet property="headingLabel" destination="LtF-cg-Z0g" id="5CI-UO-cKe"/>
                         <outlet property="messageLabel" destination="jPC-vu-kMO" id="vjy-g3-7CJ"/>
                         <outlet property="progressLabel" destination="s1w-q9-hI8" id="b3v-zp-LNL"/>
@@ -767,6 +781,6 @@
         <image name="Logo" width="400" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9ft-rx-fyT"/>
+        <segue reference="MHn-2u-KZR"/>
     </inferredMetricsTieBreakers>
 </document>

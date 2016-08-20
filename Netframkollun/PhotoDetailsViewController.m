@@ -11,6 +11,8 @@
 
 @interface PhotoDetailsViewController ()
 @property (strong, nonatomic) ImageType *selectedImageType;
+@property (strong) UIPickerView *sizePickerView;
+@property (strong) UIPickerView *countPickerView;
 @end
 
 @implementation PhotoDetailsViewController
@@ -34,18 +36,41 @@
     [_countTextField setText:[_detailPhoto.count stringValue]];
     
     // Init PickerViews
-    UIPickerView * sizePickerView = [UIPickerView new];
-    UIPickerView * countPickerView = [UIPickerView new];
+    _sizePickerView = [UIPickerView new];
+    _countPickerView = [UIPickerView new];
     
-    _sizeTextField.inputView = sizePickerView;
-    [sizePickerView setTag:1];
-    [sizePickerView setDelegate:self];
-    [sizePickerView setDataSource:self];
+    UIToolbar *toolBar1 = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    toolBar1.translucent = true;
     
-    _countTextField.inputView = countPickerView;
-    [countPickerView setTag:2];
-    [countPickerView setDelegate:self];
-    [countPickerView setDataSource:self];
+    UIToolbar *toolBar2 = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    toolBar2.translucent = true;
+    
+    UIBarButtonItem *barButtonDone1 = [[UIBarButtonItem alloc] initWithTitle:@"Velja"
+                                                                       style:UIBarButtonItemStyleDone
+                                                                      target:self
+                                                                      action:@selector(donePressedOnPickerViewSize)];
+    UIBarButtonItem *barButtonDone2 = [[UIBarButtonItem alloc] initWithTitle:@"Velja"
+                                                                       style:UIBarButtonItemStyleDone
+                                                                      target:self
+                                                                      action:@selector(donePressedOnPickerViewCount)];
+    toolBar1.items = @[barButtonDone1];
+    toolBar2.items = @[barButtonDone2];
+    
+    _sizeTextField.inputAccessoryView = toolBar1;
+    _countTextField.inputAccessoryView = toolBar2;
+    
+    _sizeTextField.inputView = _sizePickerView;
+    _sizeTextField.tintColor = [UIColor clearColor];
+    [_sizePickerView setTag:1];
+    [_sizePickerView setDelegate:self];
+    [_sizePickerView setDataSource:self];
+    
+    _countTextField.inputView = _countPickerView;
+    _countTextField.tintColor = [UIColor clearColor];
+    [_countPickerView setTag:2];
+    [_countPickerView setDelegate:self];
+    [_countPickerView setDataSource:self];
+    
 
     for (NSInteger i = 1; i <= 100; i++) {
         [_countPickerData addObject:[NSNumber numberWithInteger:i]];
@@ -92,8 +117,17 @@
     else {
         [_countTextField setText:[[_countPickerData objectAtIndex:row] stringValue]];
     }
-    [[self view] endEditing:YES];
 }
+
+- (void)donePressedOnPickerViewCount {
+    [_countTextField resignFirstResponder];
+}
+
+- (void)donePressedOnPickerViewSize {
+    [_sizeTextField resignFirstResponder];
+}
+
+
 
 // Buttons
 

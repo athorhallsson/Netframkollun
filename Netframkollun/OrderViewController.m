@@ -111,7 +111,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"sendSegue"]) {
         [(SendViewController*)[segue destinationViewController] setPhotos:_photos];
-        [(SendViewController*)[segue destinationViewController] setCurrUser:_currUser];
         [(SendViewController*)[segue destinationViewController] setDelivery:_selectedDelivery];
         [(SendViewController*)[segue destinationViewController] setPayment:_selectedPayment];
         [(SendViewController*)[segue destinationViewController] setComments:_commentTextField.text];

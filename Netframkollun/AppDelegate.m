@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "SessionManager.h"
+#import "PhotoViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    if ([SessionManager isSignedIn]) {
+        self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        PhotoViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"photoController"];
+        self.window.rootViewController = rootViewController;
+        [self.window makeKeyAndVisible];
+    }
+
     return YES;
 }
 

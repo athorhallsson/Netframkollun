@@ -18,23 +18,19 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *headingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (strong, nonatomic) NSMutableArray *photos;
 
-@property (strong, nonatomic) User *currUser;
-
 @property (strong, nonatomic) Delivery *delivery;
-
 @property (strong, nonatomic) Payment *payment;
-
 @property (strong, nonatomic) NSString *orderId;
-
 @property (nonatomic) NSInteger uploadedCount;
-
 @property (nonatomic) NSString *comments;
-
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 
-@property (strong, nonatomic) NSNumber *minCost;
+
+- (void) displaySuccess:(NSString *)message;
+- (void) updateProgress;
 
 @end

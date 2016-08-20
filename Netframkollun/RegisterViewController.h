@@ -10,8 +10,9 @@
 #import "Properties.h"
 #import "User.h"
 #import "PhotoViewController.h"
+#import "LoginViewController.h"
 
-@interface RegisterViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface RegisterViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate, UIPickerViewDelegate, UIPickerViewDataSource, LoginInterface>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ssnTextField;
@@ -39,5 +40,9 @@
 
 - (IBAction)registerPressed:(UIButton *)sender;
 - (IBAction)backPressed:(UIButton *)sender;
+
+- (void)login:(id)sender;
+
+- (void)loginError:(id)sender;
 
 @end
