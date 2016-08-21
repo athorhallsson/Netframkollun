@@ -78,6 +78,56 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
+- (IBAction)infoButtonPressed:(UIButton *)sender {
+    
+    User *user = [SessionManager getSignedInUser];
+    
+    UIAlertController *actionSheet = [UIAlertController
+                                      alertControllerWithTitle:user.name
+                                      message:@"Viltu skrá þig út?"
+                                      preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* signOut = [UIAlertAction
+                              actionWithTitle:@"skrá út"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action) {
+                                  [SessionManager signOutUser];
+                                  [actionSheet dismissViewControllerAnimated:YES completion:nil];
+                                  [self performSegueWithIdentifier:@"signOut" sender:nil];
+                             
+                              }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"hætta við"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [actionSheet dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    [actionSheet addAction:signOut];
+    [actionSheet addAction:cancel];
+    [self presentViewController:actionSheet animated:YES completion:nil];
+    
+}
+
+- (IBAction)continueButtonPressed:(UIButton *)sender {
+    if ([_photos count] == 0) {
+        UIAlertController * alert = [UIAlertController
+                                    alertControllerWithTitle:@"Bíddu hægur"
+                                    message:@"Bættu við myndum áður en þú heldur áfram"
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        [self performSegueWithIdentifier:@"OrderSegue" sender:nil];
+    }
+    
+}
+
 
 // Image Picker
 
@@ -126,6 +176,7 @@
     return UIEdgeInsetsMake(30, 30, 30, 30);
 }
 
+
 // Segue
 #pragma mark - Navigation
 
@@ -133,7 +184,7 @@
     if ([[segue identifier] isEqualToString:@"PhotoDetails"]) {
         [(PhotoNavigationController *)[segue destinationViewController] setDetailPhoto:(Photo *)sender];
         [(PhotoNavigationController *)[segue destinationViewController] setSizePickerData:_imageTypes];
-
+        [(PhotoNavigationController *)[segue destinationViewController] setPhotos:_photos];
     }
     if ([segue.identifier isEqualToString:@"OrderSegue"]) {
         [(OrderViewController*)[segue destinationViewController] setPhotos:_photos];

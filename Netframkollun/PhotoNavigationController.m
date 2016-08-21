@@ -18,6 +18,7 @@
     [super viewDidLoad];
     [(PhotoDetailsViewController *)self.topViewController setDetailPhoto:_detailPhoto];
     [(PhotoDetailsViewController *)self.topViewController setSizePickerData:_sizePickerData];
+    [(PhotoDetailsViewController *)self.topViewController setPhotos:_photos];
 }
 
 

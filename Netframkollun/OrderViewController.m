@@ -73,8 +73,26 @@
 }
 
 - (IBAction)sendButtonPressed:(UIButton *)sender {
-    // Assemble all information about the order and pass it along
-    [self performSegueWithIdentifier:@"sendSegue" sender:_photos];
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Spennó!"
+                                 message:@"ertu viss um að þú viljir senda pöntunina?"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"já!"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             [self performSegueWithIdentifier:@"sendSegue" sender:_photos];
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                         actionWithTitle:@"ekki strax"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
+    [alert addAction:cancel];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

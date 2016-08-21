@@ -144,8 +144,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)cancelButtonPressed:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)deleteButtonPressed:(UIButton *)sender {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Fínasta mynd..."
+                                 message:@"ertu viss um að þú viljir eyða myndinni?"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"jebb"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             [_photos removeObject:_detailPhoto];
+                             [self dismissViewControllerAnimated:YES completion:nil];
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"hætta við"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    [alert addAction:cancel];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)imagePressed:(UITapGestureRecognizer *)recognizer {
@@ -175,7 +195,6 @@
 - (void)imageCropViewController:(RSKImageCropViewController *)controller
                    didCropImage:(UIImage *)croppedImage
                   usingCropRect:(CGRect)cropRect {
-   // self.detailPhoto.image = croppedImage;
     self.imageView.image = croppedImage;
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -237,14 +256,14 @@
     CGPoint point3 = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
     CGPoint point4 = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
     
-    UIBezierPath *triangle = [UIBezierPath bezierPath];
-    [triangle moveToPoint:point1];
-    [triangle addLineToPoint:point2];
-    [triangle addLineToPoint:point3];
-    [triangle addLineToPoint:point4];
-    [triangle closePath];
+    UIBezierPath *rectangle = [UIBezierPath bezierPath];
+    [rectangle moveToPoint:point1];
+    [rectangle addLineToPoint:point2];
+    [rectangle addLineToPoint:point3];
+    [rectangle addLineToPoint:point4];
+    [rectangle closePath];
     
-    return triangle;
+    return rectangle;
 }
 
 // Returns a custom rect in which the image can be moved.

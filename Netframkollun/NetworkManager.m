@@ -358,7 +358,7 @@
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
                                       PostalCodeParser *pcp = [[PostalCodeParser alloc] initWithXMLData:data];
                                       sender.locations = pcp.locations;
-                                      sender.pCodes = pcp.locations;
+                                      sender.pCodes = pcp.pCodes;
                                       
                                       if (error) {
                                           NSLog(@"%@", error);

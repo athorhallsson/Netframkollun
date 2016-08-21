@@ -17,14 +17,15 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *sizeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *countTextField;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (strong, nonatomic) NSDictionary *sizePickerData;
 @property (strong, nonatomic) NSArray *sizePickerArray;
 @property (strong, nonatomic) NSMutableArray *countPickerData;
+@property (strong, nonatomic) NSMutableArray *photos;
 
 - (IBAction)saveButtonPressed:(UIButton *)sender;
-- (IBAction)cancelButtonPressed:(UIButton *)sender;
+- (IBAction)deleteButtonPressed:(UIButton *)sender;
 
 @end

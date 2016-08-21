@@ -29,11 +29,24 @@
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
     if ([_emailTextfield.text  isEqual:@""] || [_passwordTextField.text  isEqual:@""]) {
-        return;
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Þú gabbar mig ekki svona auðveldlega"
+                                     message:@"þú verður að slá inn netfang og lykilorð"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
     }
-    [NetworkManager sendLogin:_emailTextfield.text
-                 withPassword:_passwordTextField.text
-                   withSender:self];
+    else {
+        [NetworkManager sendLogin:_emailTextfield.text
+                     withPassword:_passwordTextField.text
+                       withSender:self];
+    }
 }
 
 - (void)login:(id)sender {
@@ -41,8 +54,18 @@
 }
 
 - (void)loginError:(id)sender {
-    [_emailTextfield setBackgroundColor:[UIColor colorWithRed:0.95 green:0.5 blue:0.4 alpha:1.0]];
-    [_passwordTextField setBackgroundColor:[UIColor colorWithRed:0.95 green:0.5 blue:0.4 alpha:1.0]];
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Nú ertu eitthvað að rugla"
+                                 message:@"netfangið eða lykilorðið er rangt slegið inn"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

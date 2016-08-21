@@ -18,7 +18,7 @@
                         <rect key="frame" x="8" y="8" width="159" height="135"/>
                         <color key="backgroundColor" red="0.8784313725490196" green="0.23921568627450979" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10x15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fl-x7-l3Y">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10x15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="9fl-x7-l3Y">
                         <rect key="frame" x="8" y="147" width="112" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

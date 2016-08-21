@@ -31,6 +31,8 @@
 @property (strong, nonatomic) NSNumber *minCost;
 
 - (IBAction)addButtonPressed:(id)sender;
+- (IBAction)infoButtonPressed:(UIButton *)sender;
+- (IBAction)continueButtonPressed:(UIButton *)sender;
     
 @end
 

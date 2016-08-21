@@ -24,6 +24,7 @@
     
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];
     xmlParser.delegate = self;
+    _parseString = @"";
     [xmlParser parse];
     
     return self;
@@ -54,7 +55,7 @@
         _inPostCode = NO;
     }
     else if ([elementName isEqualToString:@"Location"]) {
-        [_locations addObject:_parseString];
+        [_locations addObject:[NSString stringWithString:_parseString]];
         _parseString = @"";
         _inLocation = NO;
     }

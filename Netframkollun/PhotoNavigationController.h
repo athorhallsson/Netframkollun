@@ -14,5 +14,6 @@
 
 @property (strong, nonatomic) Photo *detailPhoto;
 @property (strong, nonatomic) NSDictionary *sizePickerData;
+@property (strong, nonatomic) NSMutableArray *photos;
 
 @end

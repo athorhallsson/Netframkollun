@@ -43,7 +43,7 @@
     // Get postal codes
     [NetworkManager getPostalCodeswithSender:self];
     
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     toolBar.translucent = true;
     
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Velja"
@@ -73,6 +73,20 @@
         user.phone = [_phoneTextField text];
         user.ssn = [_ssnTextField text];
         [NetworkManager createUser:user withLocation:_selectedLocation withSender:self];
+    }
+    else {
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Obbobboj"
+                                     message:@"þarna klúðraðiru einhverju, reyndu aftur"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
