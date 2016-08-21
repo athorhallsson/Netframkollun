@@ -9,6 +9,10 @@
 #import "NetworkManager.h"
 #import "Properties.h"
 #import "SessionManager.h"
+#import "PaymentParser.h"
+#import "DeliveryParser.h"
+#import "ImageTypeParser.h"
+#import "PostalCodeParser.h"
 
 @implementation NetworkManager
 
@@ -330,6 +334,34 @@
                                                           waitUntilDone:NO];
                                       if (error) {
                                           NSLog(@"Error %@", error);
+                                      }
+                                  }];
+    [task resume];
+}
+
++ (void)getPostalCodeswithSender:(RegisterViewController*)sender {
+    NSString *soapBody = @"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><getPostalCodes xmlns=\"http://imageuploader.digit.is\" /></soap:Body></soap:Envelope>";
+    NSString *host = [Properties webService];
+    NSURL *sRequestURL = [NSURL URLWithString:host];
+    NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+    NSString *sMessageLength = [NSString stringWithFormat:@"%d", (int)[soapBody length]];
+    
+    [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [myRequest addValue: @"http://imageuploader.digit.is/getPostalCodes" forHTTPHeaderField:@"SOAPAction"];
+    [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
+    [myRequest setHTTPMethod:@"POST"];
+    [myRequest setHTTPBody: [soapBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      PostalCodeParser *pcp = [[PostalCodeParser alloc] initWithXMLData:data];
+                                      sender.locations = pcp.locations;
+                                      sender.pCodes = pcp.locations;
+                                      
+                                      if (error) {
+                                          NSLog(@"%@", error);
                                       }
                                   }];
     [task resume];

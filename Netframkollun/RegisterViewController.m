@@ -8,10 +8,12 @@
 
 #import "RegisterViewController.h"
 #import "NetworkManager.h"
+#import "PostalCodeParser.h"
 
 @interface RegisterViewController ()
 @property (strong, nonatomic) NSString *selectedLocation;
 @property (strong, nonatomic) NSString *selectedPostalCode;
+@property (strong) UIPickerView *postalPickerView;
 @end
 
 @implementation RegisterViewController
@@ -44,12 +46,22 @@
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
     // Get postal codes
-    [self getPostalCodes];
+    [NetworkManager getPostalCodeswithSender:self];
     
-    UIPickerView * postalPickerView = [UIPickerView new];
-    _postalTextField.inputView = postalPickerView;
-    postalPickerView.delegate = self;
-    postalPickerView.dataSource = self;
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    toolBar.translucent = true;
+    
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Velja"
+                                                                       style:UIBarButtonItemStyleDone
+                                                                      target:self
+                                                                      action:@selector(donePressedOnPickerView)];
+    toolBar.items = @[barButtonDone];
+    _postalTextField.inputAccessoryView = toolBar;
+    
+    _postalPickerView = [UIPickerView new];
+    _postalTextField.inputView = _postalPickerView;
+    _postalPickerView.delegate = self;
+    _postalPickerView.dataSource = self;
     
 }
 
@@ -220,37 +232,7 @@
     [TextField setBackgroundColor:[UIColor whiteColor]];
 }
 
-// Get Postal Codes
-
-- (void)getPostalCodes {
-    NSString *soapBody = @"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><getPostalCodes xmlns=\"http://imageuploader.digit.is\" /></soap:Body></soap:Envelope>";
-    NSString *host = [Properties webService];
-    NSURL *sRequestURL = [NSURL URLWithString:host];
-    NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
-    NSString *sMessageLength = [NSString stringWithFormat:@"%d", (int)[soapBody length]];
-    
-    [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [myRequest addValue: @"http://imageuploader.digit.is/getPostalCodes" forHTTPHeaderField:@"SOAPAction"];
-    [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
-    [myRequest setHTTPMethod:@"POST"];
-    [myRequest setHTTPBody: [soapBody dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:myRequest
-                                            completionHandler:
-                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      _webResponseData = data;
-                                      //NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                      //NSLog(@"Response: %@", newStr);
-                                      NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:_webResponseData];
-                                      xmlParser.delegate = self;
-                                      [xmlParser parse];
-                                      if (error) {
-                                          NSLog(@"%@", error);
-                                      }
-                                  }];
-    [task resume];
-}
+// Login
 
 - (void)login:(id)sender {
     [self performSegueWithIdentifier:@"registerSuccess" sender:sender];
@@ -258,40 +240,6 @@
 
 - (void)loginError:(id)sender {
     NSLog(@"Login Error");
-}
-
-
-// XML parser
-
--(void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI qualifiedName:
-(NSString *)qName attributes:(NSDictionary *)attributeDict {
-    if ([elementName isEqualToString:@"Pcode"]) {
-        _inPostCode = YES;
-    }
-    else if ([elementName isEqualToString:@"Location"]) {
-         _inLocation = YES;
-    }
-}
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    if (_inPostCode) {
-        [_pCodes addObject:string];
-    }
-    else if (_inLocation) {
-        _tempLocation = [_tempLocation stringByAppendingString:string];
-    }
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    if ([elementName isEqualToString:@"Pcode"]) {
-        _inPostCode = NO;
-    }
-    else if ([elementName isEqualToString:@"Location"]) {
-        [_locations addObject:_tempLocation];
-        _tempLocation = @"";
-        _inLocation = NO;
-    }
 }
 
 // PickerView
@@ -309,19 +257,16 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    _selectedLocation = [_locations objectAtIndex:row];
-    _selectedPostalCode = [_pCodes objectAtIndex:row];
+//    _selectedLocation = [_locations objectAtIndex:row];
+//    _selectedPostalCode = [_pCodes objectAtIndex:row];
     [_postalTextField setText:[NSString stringWithFormat:@"%@ - %@", [_pCodes objectAtIndex:row], [_locations objectAtIndex:row]]];
 }
 
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"registerSuccess"]) {
-        [(PhotoViewController*)[segue destinationViewController] setCurrUser:sender];
-    }
+- (void)donePressedOnPickerView {
+    NSInteger row = [_postalPickerView selectedRowInComponent:0];
+    _selectedLocation = [_locations objectAtIndex:row];
+    _selectedPostalCode = [_pCodes objectAtIndex:row];
+    [_postalTextField resignFirstResponder];
 }
 
 

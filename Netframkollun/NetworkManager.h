@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PaymentParser.h"
-#import "DeliveryParser.h"
-#import "ImageTypeParser.h"
 #import "User.h"
 #import "PhotoViewController.h"
 #import "LoginViewController.h"
@@ -54,5 +51,7 @@
          withSender:(SendViewController*)sender;
 
 + (void)finalizeOrderwithSender:(SendViewController*)sender;
+
++ (void)getPostalCodeswithSender:(RegisterViewController*)sender;
 
 @end

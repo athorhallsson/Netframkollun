@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (strong, nonatomic) NSMutableArray *photos;
-
 @property (strong, nonatomic) Delivery *delivery;
 @property (strong, nonatomic) Payment *payment;
 @property (strong, nonatomic) NSString *orderId;
