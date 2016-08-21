@@ -25,8 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonnull) NSNumber *totalPrice;
 @property (strong, nonatomic) NSNumber *minCost;
 
-@property (strong, nonatomic) User *currUser;
-
 - (IBAction)sendButtonPressed:(UIButton *)sender;
 - (IBAction)backButtonPressed:(UIButton *)sender;
 

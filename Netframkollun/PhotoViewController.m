@@ -31,7 +31,7 @@
         _imageCounter = 0;
     }
     
-    // Fetch image types
+    // Fetch image types, deliveries, payments and pricelist for current user
     User *currUser = [SessionManager getSignedInUser];
     
     [NetworkManager getImageTypes:currUser
@@ -140,7 +140,6 @@
         [(OrderViewController*)[segue destinationViewController] setDeliveries:_deliveries];
         [(OrderViewController*)[segue destinationViewController] setImageTypes:_imageTypes];
         [(OrderViewController*)[segue destinationViewController] setPayments:_payments];
-        [(OrderViewController*)[segue destinationViewController] setCurrUser:_currUser];
         [(OrderViewController*)[segue destinationViewController] setMinCost:_minCost];
     }
 }

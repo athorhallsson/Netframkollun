@@ -41,11 +41,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)deliveryChanged:(UISegmentedControl*)control {
     if ([control selectedSegmentIndex] == 0) {
         // Sott

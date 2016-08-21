@@ -222,6 +222,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="btn-P3-CNI" secondAttribute="trailing" constant="30" id="poo-6O-ahf"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="emailTextfield" destination="vTf-8a-jy8" id="0L6-m8-FLQ"/>
                         <outlet property="loginButton" destination="4WS-07-Iki" id="D12-62-1Og"/>
@@ -260,7 +261,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="515" id="LQ2-eO-2wH"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -387,6 +388,7 @@
                             <constraint firstAttribute="trailing" secondItem="JLi-Y9-Z8Z" secondAttribute="trailing" id="tif-2f-J1q"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="addressTextField" destination="NDB-wG-ZoM" id="CcC-2J-SWs"/>
                         <outlet property="backButton" destination="GE8-PM-SDF" id="yXl-nv-nHu"/>
@@ -447,7 +449,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btd-ud-DSh">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btd-ud-DSh">
                                 <rect key="frame" x="164" y="502" width="272" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="aftur á forsíðu">
@@ -461,29 +463,24 @@
                                 <rect key="frame" x="290" y="300" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJl-nw-9kf">
-                                <rect key="frame" x="130" y="365" width="340" height="1"/>
+                                <rect key="frame" x="50" y="365" width="480" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="3TX-gR-MRm"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="2" id="PHy-oJ-tBB"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="PHy-oJ-tBB"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.074020686490000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="s1w-q9-hI8" firstAttribute="trailing" secondItem="jPC-vu-kMO" secondAttribute="trailing" id="4BN-nY-tNK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hJl-nw-9kf" secondAttribute="trailing" constant="50" id="6ig-ao-QM8"/>
                             <constraint firstItem="s1w-q9-hI8" firstAttribute="leading" secondItem="jPC-vu-kMO" secondAttribute="leading" id="7eV-1s-Ma9"/>
                             <constraint firstItem="moF-zE-U2c" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="8Dr-B5-M9U"/>
                             <constraint firstItem="hJl-nw-9kf" firstAttribute="centerX" secondItem="moF-zE-U2c" secondAttribute="centerX" id="DFG-3V-A5r"/>
                             <constraint firstItem="Btd-ud-DSh" firstAttribute="top" secondItem="s1w-q9-hI8" secondAttribute="bottom" constant="26" id="Dyt-cJ-qDS"/>
                             <constraint firstItem="Btd-ud-DSh" firstAttribute="centerX" secondItem="moF-zE-U2c" secondAttribute="centerX" id="GAa-8m-yus"/>
                             <constraint firstItem="Btd-ud-DSh" firstAttribute="leading" secondItem="s1w-q9-hI8" secondAttribute="leading" id="Sj1-xO-z5t"/>
-                            <constraint firstItem="hJl-nw-9kf" firstAttribute="leading" secondItem="JNz-Gx-qeJ" secondAttribute="leading" constant="130" id="Snv-av-fPR"/>
+                            <constraint firstItem="hJl-nw-9kf" firstAttribute="leading" secondItem="JNz-Gx-qeJ" secondAttribute="leading" constant="50" id="Snv-av-fPR"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="top" secondItem="LtF-cg-Z0g" secondAttribute="bottom" constant="20" id="XL6-Cs-gDc"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="bDp-9G-X3b"/>
                             <constraint firstItem="s1w-q9-hI8" firstAttribute="top" secondItem="hJl-nw-9kf" secondAttribute="bottom" constant="17" id="dp2-cB-b7g"/>
@@ -496,9 +493,11 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="bDp-9G-X3b"/>
+                                <exclude reference="DFG-3V-A5r"/>
                             </mask>
                         </variation>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="activityIndicator" destination="moF-zE-U2c" id="jG8-rL-ArM"/>
                         <outlet property="backButton" destination="Btd-ud-DSh" id="kc3-Kn-AHQ"/>
@@ -776,6 +775,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="commentTextField" destination="KiY-GY-DZC" id="v7Z-gM-nPC"/>
                         <outlet property="deliveryControl" destination="DJc-vC-XMy" id="hFo-qF-6Kb"/>

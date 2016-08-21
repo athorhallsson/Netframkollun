@@ -19,6 +19,9 @@
 - (id)initWithXMLData:(NSData*)data {
     self = [super init];
     
+    _locations = [[NSMutableArray alloc] init];
+    _pCodes = [[NSMutableArray alloc] init];
+    
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];
     xmlParser.delegate = self;
     [xmlParser parse];

@@ -22,14 +22,8 @@
     [_activityIndicator startAnimating];
     User *currUser = [SessionManager getSignedInUser];
     [NetworkManager createOrder:currUser withPayment:_payment withDelivery:_delivery withPhotos:_photos withComment:_comments withSender:self];
-    // So it can be incremented once
-    _uploadedCount = -1;
-    [self updateProgress];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _uploadedCount = 0;
+    [_progressLabel setText:[NSString stringWithFormat:@"%ld / %ld", (long)_uploadedCount, (long)[_photos count]]];
 }
 
 - (void) updateProgress {
@@ -45,6 +39,7 @@
     [_activityIndicator stopAnimating];
     [_headingLabel setText:@"Takk fyrir"];
     [_messageLabel setText:message];
+    _backButton.hidden = NO;
 }
 
 @end

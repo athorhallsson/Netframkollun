@@ -120,11 +120,17 @@
 }
 
 - (void)donePressedOnPickerViewCount {
+    NSInteger row = [_countPickerView selectedRowInComponent:0];
+    [_countTextField setText:[[_countPickerData objectAtIndex:row] stringValue]];
     [_countTextField resignFirstResponder];
 }
 
 - (void)donePressedOnPickerViewSize {
+     NSInteger row = [_sizePickerView selectedRowInComponent:0];
+    [_sizeTextField setText:[[_sizePickerArray objectAtIndex:row] imageTypeDescription]];
+    _selectedImageType = [_sizePickerArray objectAtIndex:row];
     [_sizeTextField resignFirstResponder];
+    [self showCropper];
 }
 
 
@@ -134,7 +140,6 @@
 - (IBAction)saveButtonPressed:(UIButton *)sender {
     [_detailPhoto setImageType:_selectedImageType];
     [_detailPhoto setCount:[NSNumber numberWithInteger:[[_countTextField text] integerValue]]];
-    // try to save
     [_detailPhoto setImage:_imageView.image];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -144,6 +149,11 @@
 }
 
 - (IBAction)imagePressed:(UITapGestureRecognizer *)recognizer {
+    [self showCropper];
+}
+
+
+- (void)showCropper {
     RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:_detailPhoto.originalImage];
     [imageCropVC.chooseButton setTitle:@"Staðfesta" forState:UIControlStateNormal];
     [imageCropVC.cancelButton setTitle:@"Hætta við" forState:UIControlStateNormal];

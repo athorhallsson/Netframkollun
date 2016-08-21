@@ -12,7 +12,7 @@
 #import "PhotoViewController.h"
 #import "LoginViewController.h"
 
-@interface RegisterViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate, UIPickerViewDelegate, UIPickerViewDataSource, LoginInterface>
+@interface RegisterViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ssnTextField;
@@ -29,14 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (strong, nonatomic) NSData *webResponseData;
-
 @property (strong, nonatomic) NSMutableArray *locations;
 @property (strong, nonatomic) NSMutableArray *pCodes;
-
-@property (strong, nonatomic) NSString *tempLocation;
-@property (nonatomic) BOOL inLocation;
-@property (nonatomic) BOOL inPostCode;
 
 - (IBAction)registerPressed:(UIButton *)sender;
 - (IBAction)backPressed:(UIButton *)sender;

@@ -18,12 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Initialize user
-    _currUser = [[User alloc] init];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -49,14 +43,6 @@
 - (void)loginError:(id)sender {
     [_emailTextfield setBackgroundColor:[UIColor colorWithRed:0.95 green:0.5 blue:0.4 alpha:1.0]];
     [_passwordTextField setBackgroundColor:[UIColor colorWithRed:0.95 green:0.5 blue:0.4 alpha:1.0]];
-}
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"LoginSuccess"]) {
-//        [(PhotoViewController*)[segue destinationViewController] setCurrUser:_currUser];
-//    }
 }
 
 @end

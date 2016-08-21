@@ -21,11 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Init variables for parser
-    _locations = [[NSMutableArray alloc] init];
-    _pCodes = [[NSMutableArray alloc] init];
-     _tempLocation = @"";
-    
     // Register notifications
     [_ssnTextField addTarget:self
                   action:@selector(ssnTextFieldDidChange:)
@@ -63,10 +58,6 @@
     _postalPickerView.delegate = self;
     _postalPickerView.dataSource = self;
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 // Buttons

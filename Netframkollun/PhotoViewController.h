@@ -25,8 +25,6 @@
 @property (strong, nonatomic) NSMutableArray *photos;
 @property (strong, nonatomic) ImageType *defaultImageType;
 
-@property (strong, nonatomic) User *currUser;
-
 @property (strong, nonatomic) NSDictionary *payments;
 @property (strong, nonatomic) NSDictionary *deliveries;
 @property (strong, nonatomic) NSDictionary *imageTypes;
