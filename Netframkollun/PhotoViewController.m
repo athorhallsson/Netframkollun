@@ -62,6 +62,29 @@
     
     // Init collectionViewCell
     [self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCollectionCell"];
+    
+    if ([_photos count] == 0) {
+        CGFloat width = _collectionView.frame.size.width;
+        CGFloat height = _collectionView.frame.size.height;
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(width/2, height/2, width/2, height/2)];
+        NSMutableAttributedString* labelText = [[NSMutableAttributedString alloc] initWithString:@"bættu við myndum\nmeð því að ýta á plúsinn"];
+        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+        [style setLineSpacing:16];
+        [labelText addAttribute:NSParagraphStyleAttributeName
+                            value:style
+                            range:NSMakeRange(0, labelText.length)];
+        label.attributedText = labelText;
+        label.numberOfLines = 2;
+        label.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+        label.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
+        label.adjustsFontSizeToFitWidth = YES;
+        label.minimumScaleFactor = 10.0f/12.0f;
+        label.clipsToBounds = YES;
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.4f];
+        label.textAlignment = NSTextAlignmentCenter;
+        _collectionView.backgroundView = label;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -125,13 +148,15 @@
     else {
         [self performSegueWithIdentifier:@"OrderSegue" sender:nil];
     }
-    
 }
 
 
 // Image Picker
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // Hide background text
+    _collectionView.backgroundView = nil;
+    
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     
     _imageCounter++;

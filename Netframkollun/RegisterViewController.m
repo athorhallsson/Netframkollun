@@ -247,6 +247,31 @@
     NSLog(@"Login Error");
 }
 
+- (void)registerError:(NSString *)message {
+    NSString* alertMessage;
+    
+    if ([message containsString:@"<createUserResult>-1020</createUserResult>"]) {
+        alertMessage = @"þetta netfang er nú þegar á skrá";
+    }
+    else {
+        alertMessage = @"reyndu aftur seinna";
+    }
+
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Ekki tókst að skrá notanda"
+                                 message:alertMessage
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 // PickerView
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {

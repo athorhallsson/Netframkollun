@@ -204,7 +204,10 @@
                                           [NetworkManager sendLogin:user.email withPassword:user.password withSender:sender];
                                       }
                                       else {
-                                          NSLog(@"Register ERROR");
+                                          // Alert User
+                                          [sender performSelectorOnMainThread:@selector(registerError:)
+                                                                   withObject:responseString
+                                                                waitUntilDone:NO];
                                       }
                                       
                                       if (error) {

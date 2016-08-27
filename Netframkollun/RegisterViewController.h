@@ -38,5 +38,6 @@
 - (void)login:(id)sender;
 
 - (void)loginError:(id)sender;
+- (void)registerError:(NSString *)message;
 
 @end
