@@ -228,21 +228,22 @@
     else {
         ratio = cropWidth/cropHeight;
     }
-    
-    
-    if (width > height) {
-        maskSize = CGSizeMake(350, 350 * ratio);
-    }
-    else {
-        maskSize = CGSizeMake(350 * ratio , 350);
-
-    }
-    
     CGFloat viewWidth = CGRectGetWidth(controller.view.frame);
     CGFloat viewHeight = CGRectGetHeight(controller.view.frame);
     
-    CGRect maskRect = CGRectMake((viewWidth - maskSize.width) * 0.5f,
-                                 (viewHeight - maskSize.height) * 0.5f,
+    CGFloat size = viewWidth;
+    
+    if (width > height) {
+        maskSize = CGSizeMake(size, size * ratio);
+    }
+    else {
+        maskSize = CGSizeMake(size * ratio , size);
+        
+    }
+  
+    // centered
+    CGRect maskRect = CGRectMake((viewWidth - maskSize.width) * 0.5,
+                                 (viewHeight - maskSize.height) * 0.5,
                                  maskSize.width,
                                  maskSize.height);
     return maskRect;
