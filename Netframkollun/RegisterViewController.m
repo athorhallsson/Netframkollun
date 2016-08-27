@@ -50,7 +50,11 @@
                                                                        style:UIBarButtonItemStyleDone
                                                                       target:self
                                                                       action:@selector(donePressedOnPickerView)];
-    toolBar.items = @[barButtonDone];
+    barButtonDone.tintColor = [UIColor redColor];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                           target:nil
+                                                                           action:nil];
+    toolBar.items = @[space, barButtonDone];
     _postalTextField.inputAccessoryView = toolBar;
     
     _postalPickerView = [UIPickerView new];
@@ -58,6 +62,10 @@
     _postalPickerView.delegate = self;
     _postalPickerView.dataSource = self;
     
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 // Buttons

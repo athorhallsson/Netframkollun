@@ -49,12 +49,17 @@
                                                                        style:UIBarButtonItemStyleDone
                                                                       target:self
                                                                       action:@selector(donePressedOnPickerViewSize)];
+    barButtonDone1.tintColor = [UIColor redColor];
     UIBarButtonItem *barButtonDone2 = [[UIBarButtonItem alloc] initWithTitle:@"Velja"
                                                                        style:UIBarButtonItemStyleDone
                                                                       target:self
                                                                       action:@selector(donePressedOnPickerViewCount)];
-    toolBar1.items = @[barButtonDone1];
-    toolBar2.items = @[barButtonDone2];
+    barButtonDone2.tintColor = [UIColor redColor];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                           target:nil
+                                                                           action:nil];
+    toolBar1.items = @[space, barButtonDone1];
+    toolBar2.items = @[space, barButtonDone2];
     
     _sizeTextField.inputAccessoryView = toolBar1;
     _countTextField.inputAccessoryView = toolBar2;

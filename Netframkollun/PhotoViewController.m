@@ -97,6 +97,7 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = NO;
+    picker.navigationBar.tintColor = [UIColor redColor];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:picker animated:YES completion:NULL];
 }
@@ -126,6 +127,7 @@
                              }];
     [actionSheet addAction:signOut];
     [actionSheet addAction:cancel];
+    actionSheet.popoverPresentationController.sourceView = sender;
     [self presentViewController:actionSheet animated:YES completion:nil];
     
 }

@@ -41,6 +41,10 @@
     
 }
 
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)deliveryChanged:(UISegmentedControl*)control {
     if ([control selectedSegmentIndex] == 0) {
         // Sott
