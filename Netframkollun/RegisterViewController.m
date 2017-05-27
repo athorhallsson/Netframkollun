@@ -280,6 +280,10 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (IBAction)swipeBack:(UIScreenEdgePanGestureRecognizer *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 // PickerView
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {

@@ -52,14 +52,15 @@
     // Init flowlayout
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(175, 175)];
-    [flowLayout setMinimumLineSpacing:10];
+    [flowLayout setMinimumLineSpacing:25];
+    [flowLayout setMinimumInteritemSpacing:10];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     
     // Init collectionView
     [self.collectionView setCollectionViewLayout:flowLayout];
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
-    
+   
     // Init collectionViewCell
     [self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCollectionCell"];
     
@@ -94,12 +95,29 @@
 // Buttons
 
 - (IBAction)addButtonPressed:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = NO;
-    picker.navigationBar.tintColor = [UIColor redColor];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentViewController:picker animated:YES completion:NULL];
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate = self;
+//    picker.allowsEditing = NO;
+//    picker.navigationBar.tintColor = [UIColor redColor];
+//    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    [self presentViewController:picker animated:YES completion:NULL];
+    
+    QBImagePickerController *imagePickerController = [QBImagePickerController new];
+    imagePickerController.delegate = self;
+    imagePickerController.allowsMultipleSelection = YES;
+    imagePickerController.maximumNumberOfSelection = 0;
+    imagePickerController.showsNumberOfSelectedAssets = YES;
+    imagePickerController.assetCollectionSubtypes = @[
+                                                      @(PHAssetCollectionSubtypeSmartAlbumUserLibrary),
+                                                      @(PHAssetCollectionSubtypeAlbumMyPhotoStream),
+                                                      @(PHAssetCollectionSubtypeSmartAlbumPanoramas),
+                                                      ];
+    imagePickerController.mediaType = QBImagePickerMediaTypeImage;
+    imagePickerController.showsNumberOfSelectedAssets = YES;
+    imagePickerController.numberOfColumnsInPortrait = 3;
+    imagePickerController.numberOfColumnsInLandscape = 6;
+    
+    [self presentViewController:imagePickerController animated:YES completion:NULL];
 }
 
 - (IBAction)infoButtonPressed:(UIButton *)sender {
@@ -155,24 +173,54 @@
 
 // Image Picker
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    // Hide background text
+//    _collectionView.backgroundView = nil;
+//    
+//    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+//    
+//    _imageCounter++;
+//    Photo *newPhoto = [[Photo alloc] initWithImage:chosenImage
+//                                  andWithImageType:_defaultImageType
+//                                           andName:[NSString stringWithFormat:@"photo%lu.jpg", (long)_imageCounter]];
+//    [_photos addObject:newPhoto];
+//    [picker dismissViewControllerAnimated:YES completion:NULL];
+//    
+//    [_collectionView reloadData];
+//}
+
+- (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
+    
+    PHImageRequestOptions *req = [[PHImageRequestOptions alloc] init];
+    req.resizeMode   = PHImageRequestOptionsResizeModeExact;
+    req.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    req.synchronous = true;
+    PHImageManager *manager = [PHImageManager defaultManager];
+    
     // Hide background text
     _collectionView.backgroundView = nil;
     
-    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    for (PHAsset *asset in assets) {
+        [manager requestImageForAsset:asset
+                           targetSize:PHImageManagerMaximumSize
+                          contentMode:PHImageContentModeDefault
+                              options:req
+                        resultHandler:^void(UIImage *image, NSDictionary *info) {
+                            _imageCounter++;
+                            Photo *newPhoto = [[Photo alloc] initWithImage:image
+                                                          andWithImageType:_defaultImageType
+                                                                   andName:[NSString stringWithFormat:@"photo%lu.jpg", (long)_imageCounter]];
+                            [_photos addObject:newPhoto];
+                        }];
+    }
     
-    _imageCounter++;
-    Photo *newPhoto = [[Photo alloc] initWithImage:chosenImage
-                                  andWithImageType:_defaultImageType
-                                           andName:[NSString stringWithFormat:@"photo%lu.jpg", (long)_imageCounter]];
-    [_photos addObject:newPhoto];
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
+    [self dismissViewControllerAnimated:YES completion:NULL];
     [_collectionView reloadData];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+- (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController {
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 // Collection View

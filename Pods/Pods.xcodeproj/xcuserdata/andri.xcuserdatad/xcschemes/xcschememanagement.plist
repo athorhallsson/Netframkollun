@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>QBImagePickerController-QBImagePicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>QBImagePickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RSKImageCropper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2B1F782CE6D10060A60420B2355DF3F7</key>
+		<key>40EDE070307087AC8A88E8D4590923FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B83BB108089EFE6C285FE271AF9A0106</key>
+		<key>564DC2857F19C5142B6D678F38A6E5F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9282539C289C8804F7514AF33F0E0403</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF2EBFB70807CE28BCEBC5E3ADF24F5B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

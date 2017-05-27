@@ -15,8 +15,9 @@
 #import "PhotoDetailsViewController.h"
 #import "PhotoNavigationController.h"
 #import "OrderViewController.h"
+#import <QBImagePickerController/QBImagePickerController.h>
 
-@interface PhotoViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PhotoViewController : UIViewController <QBImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;

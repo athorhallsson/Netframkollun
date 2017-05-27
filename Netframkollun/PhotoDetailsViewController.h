@@ -27,5 +27,6 @@
 
 - (IBAction)saveButtonPressed:(UIButton *)sender;
 - (IBAction)deleteButtonPressed:(UIButton *)sender;
+- (IBAction)swipeBack:(UIScreenEdgePanGestureRecognizer *)sender;
 
 @end

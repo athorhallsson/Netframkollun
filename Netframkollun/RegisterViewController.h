@@ -39,5 +39,6 @@
 
 - (void)loginError:(id)sender;
 - (void)registerError:(NSString *)message;
+- (IBAction)swipeBack:(UIScreenEdgePanGestureRecognizer *)sender;
 
 @end

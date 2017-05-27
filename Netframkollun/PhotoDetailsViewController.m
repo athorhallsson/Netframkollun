@@ -173,6 +173,11 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (IBAction)swipeBack:(UIScreenEdgePanGestureRecognizer *)sender {
+    NSLog(@"Swiped back");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)imagePressed:(UITapGestureRecognizer *)recognizer {
     [self showCropper];
 }
