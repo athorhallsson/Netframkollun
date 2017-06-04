@@ -88,7 +88,7 @@
                                 </variation>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.098039215686274508" green="0.32549019607843138" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.70200598239898682" green="0.70199263095855713" blue="0.70200175046920776" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="JPA-Fo-b7z" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BIp-Xc-IuV"/>
                             <constraint firstAttribute="trailing" secondItem="xnF-Pi-dAj" secondAttribute="trailing" id="Dy9-O9-WvF"/>
@@ -134,7 +134,7 @@
                                         <rect key="frame" x="0.0" y="215" width="314" height="111"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="netfang" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vTf-8a-jy8">
-                                                <rect key="frame" x="0.0" y="0.0" width="314" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="314" height="35.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Slj-N1-mqX"/>
                                                 </constraints>
@@ -150,7 +150,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="lykilorð" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ah-Yk-8F4">
-                                                <rect key="frame" x="0.0" y="76" width="314" height="35"/>
+                                                <rect key="frame" x="0.0" y="75.666666666666686" width="314" height="35.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                                 <connections>
@@ -264,16 +264,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="HDx-DJ-waE">
-                                        <rect key="frame" x="38" y="104" width="338" height="528"/>
+                                        <rect key="frame" x="38" y="104.33333333333331" width="338" height="527.66666666666674"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nýr notandi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQs-l4-Ob2">
-                                                <rect key="frame" x="95" y="0.0" width="149" height="35"/>
+                                                <rect key="frame" x="94.666666666666671" y="0.0" width="149" height="34.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZuL-9J-DxY">
-                                                <rect key="frame" x="0.0" y="65" width="338" height="394"/>
+                                                <rect key="frame" x="0.0" y="64.666666666666686" width="338" height="394"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="nafn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2VX-cW-KEH">
                                                         <rect key="frame" x="0.0" y="0.0" width="338" height="30"/>
@@ -339,10 +339,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="PxG-z7-XHN">
-                                                <rect key="frame" x="43" y="489" width="252" height="39"/>
+                                                <rect key="frame" x="43" y="488.66666666666669" width="252" height="39.000000000000057"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GE8-PM-SDF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="101" height="39"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="100.66666666666666" height="39"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="74" id="B12-jG-zoz"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="i3d-9X-Ry9"/>
@@ -363,7 +363,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qf-Ka-Qg8">
-                                                        <rect key="frame" x="152" y="0.0" width="100" height="39"/>
+                                                        <rect key="frame" x="151.66666666666663" y="0.0" width="100.33333333333334" height="39"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                         <state key="normal" title="skrá">
                                                             <color key="titleColor" red="0.99955487040000002" green="1" blue="0.99363925949999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -377,7 +377,6 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="PxG-z7-XHN" secondAttribute="trailing" constant="43" id="8ey-rU-BtJ"/>
                                             <constraint firstAttribute="trailing" secondItem="ZuL-9J-DxY" secondAttribute="trailing" id="IxF-PB-ZF7"/>
                                             <constraint firstItem="ZuL-9J-DxY" firstAttribute="leading" secondItem="HDx-DJ-waE" secondAttribute="leading" id="d0h-7O-c2b"/>
                                         </constraints>
@@ -443,13 +442,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="jPC-vu-kMO">
-                                <rect key="frame" x="71" y="228" width="272" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bíðið á meðan myndirnar eru sendar..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="jPC-vu-kMO">
+                                <rect key="frame" x="20" y="218" width="374" height="74"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="GKg-e2-DLN"/>
+                                    <constraint firstAttribute="height" constant="74" id="GKg-e2-DLN"/>
                                 </constraints>
-                                <string key="text">bíðið á meðan myndirnar eru sendar...
-</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -464,7 +461,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 / 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1w-q9-hI8">
-                                <rect key="frame" x="71" y="383" width="272" height="93"/>
+                                <rect key="frame" x="20" y="383" width="374" height="93"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="93" id="P1G-4o-bQM"/>
                                 </constraints>
@@ -473,7 +470,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btd-ud-DSh">
-                                <rect key="frame" x="71" y="502" width="272" height="36"/>
+                                <rect key="frame" x="20" y="502" width="374.66666666666669" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="aftur á forsíðu">
                                     <color key="titleColor" red="0.91985120480000004" green="1" blue="0.93108539180000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -486,32 +483,34 @@
                                 <rect key="frame" x="197" y="300" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJl-nw-9kf">
-                                <rect key="frame" x="50" y="365" width="294" height="1"/>
+                                <rect key="frame" x="62" y="364" width="290" height="1"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="3TX-gR-MRm"/>
+                                    <constraint firstAttribute="width" constant="290" id="ts4-xL-Ulc"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.074020686490000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="s1w-q9-hI8" firstAttribute="trailing" secondItem="jPC-vu-kMO" secondAttribute="trailing" id="4BN-nY-tNK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hJl-nw-9kf" secondAttribute="trailing" constant="50" id="6ig-ao-QM8"/>
                             <constraint firstItem="s1w-q9-hI8" firstAttribute="leading" secondItem="jPC-vu-kMO" secondAttribute="leading" id="7eV-1s-Ma9"/>
                             <constraint firstItem="moF-zE-U2c" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="8Dr-B5-M9U"/>
+                            <constraint firstItem="jPC-vu-kMO" firstAttribute="leading" secondItem="JNz-Gx-qeJ" secondAttribute="leading" constant="20" id="8GY-mr-Bio"/>
+                            <constraint firstAttribute="trailing" secondItem="jPC-vu-kMO" secondAttribute="trailing" constant="20" id="8q9-b9-qxJ"/>
                             <constraint firstItem="hJl-nw-9kf" firstAttribute="centerX" secondItem="moF-zE-U2c" secondAttribute="centerX" id="DFG-3V-A5r"/>
                             <constraint firstItem="Btd-ud-DSh" firstAttribute="top" secondItem="s1w-q9-hI8" secondAttribute="bottom" constant="26" id="Dyt-cJ-qDS"/>
                             <constraint firstItem="Btd-ud-DSh" firstAttribute="centerX" secondItem="moF-zE-U2c" secondAttribute="centerX" id="GAa-8m-yus"/>
                             <constraint firstItem="Btd-ud-DSh" firstAttribute="leading" secondItem="s1w-q9-hI8" secondAttribute="leading" id="Sj1-xO-z5t"/>
-                            <constraint firstItem="hJl-nw-9kf" firstAttribute="leading" secondItem="JNz-Gx-qeJ" secondAttribute="leading" constant="50" id="Snv-av-fPR"/>
-                            <constraint firstItem="jPC-vu-kMO" firstAttribute="top" secondItem="LtF-cg-Z0g" secondAttribute="bottom" constant="20" id="XL6-Cs-gDc"/>
+                            <constraint firstItem="jPC-vu-kMO" firstAttribute="top" secondItem="LtF-cg-Z0g" secondAttribute="bottom" constant="10" id="XL6-Cs-gDc"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="bDp-9G-X3b"/>
-                            <constraint firstItem="s1w-q9-hI8" firstAttribute="top" secondItem="hJl-nw-9kf" secondAttribute="bottom" constant="17" id="dp2-cB-b7g"/>
+                            <constraint firstItem="s1w-q9-hI8" firstAttribute="top" secondItem="hJl-nw-9kf" secondAttribute="bottom" constant="18" id="dp2-cB-b7g"/>
                             <constraint firstItem="LtF-cg-Z0g" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="eYx-zp-wgA"/>
                             <constraint firstItem="jPC-vu-kMO" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="g06-2I-mlt"/>
                             <constraint firstItem="LtF-cg-Z0g" firstAttribute="top" secondItem="gPB-R2-bkU" secondAttribute="bottom" constant="129" id="g59-Kt-bRH"/>
                             <constraint firstItem="s1w-q9-hI8" firstAttribute="top" secondItem="moF-zE-U2c" secondAttribute="bottom" constant="63" id="jYR-vh-FLU"/>
-                            <constraint firstItem="moF-zE-U2c" firstAttribute="top" secondItem="jPC-vu-kMO" secondAttribute="bottom" constant="12" id="kEf-dh-VEP"/>
+                            <constraint firstItem="moF-zE-U2c" firstAttribute="top" secondItem="jPC-vu-kMO" secondAttribute="bottom" constant="8" id="kEf-dh-VEP"/>
+                            <constraint firstItem="hJl-nw-9kf" firstAttribute="centerX" secondItem="JNz-Gx-qeJ" secondAttribute="centerX" id="pwc-vX-mLk"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -531,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhp-cA-Rqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511" y="-290"/>
+            <point key="canvasLocation" x="1510.144927536232" y="-290.21739130434787"/>
         </scene>
         <!--Photo Details View Controller-->
         <scene sceneID="P3T-5s-omn">
@@ -652,7 +651,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.098039215686274508" green="0.32549019607843138" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.70200598239898682" green="0.70199263095855713" blue="0.70200175046920776" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="g2n-yy-qWB" firstAttribute="top" secondItem="Ig1-jw-QCm" secondAttribute="bottom" constant="20" id="DH8-jT-vDk"/>
@@ -850,6 +849,6 @@
         <image name="Logo" width="400" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PCe-F5-sfJ"/>
+        <segue reference="MHn-2u-KZR"/>
     </inferredMetricsTieBreakers>
 </document>
